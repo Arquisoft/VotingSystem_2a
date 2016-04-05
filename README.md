@@ -10,6 +10,8 @@ Voting System
 # Authors
 
 * Jose Labra
+* Dario Suarez
+* Victor Retortillo
 
 
 
