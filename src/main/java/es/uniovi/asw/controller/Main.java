@@ -15,8 +15,10 @@ public class Main {
 
   @RequestMapping("/")
   public ModelAndView landing(Model model) {
+	
     LOG.info("Landing page access");
     return new ModelAndView("landing");
+    
   }
   
 }

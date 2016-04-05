@@ -77,9 +77,7 @@ public class Usuario {
 			String NIF,	int codColElectoral) {
 
 		this.nombre = nombre;
-		// this.email = email;
 		setEmail(email);
-		// comprobarNIF(NIF);
 		setNIF(NIF);
 		this.password = generarPassword(10);
 		this.codColElectoral = codColElectoral;
