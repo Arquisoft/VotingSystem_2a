@@ -61,8 +61,10 @@ public class UsuarioJdbcDao implements UsuarioDao{
 			e.printStackTrace();
 			
 		}finally  {
-			if (ps != null) {try{ ps.close(); } catch (Exception ex){}};
-			if (con != null) {try{ con.close(); } catch (Exception ex){}};
+			
+			Jdbc.close(ps);
+			Jdbc.close(con);
+			
 		}
 		
 		return usuarios;
@@ -109,8 +111,10 @@ public class UsuarioJdbcDao implements UsuarioDao{
 				System.out.println(e.getMessage());
 				
 			}finally  {
-				if (ps != null) {try{ ps.close(); } catch (Exception ex){}};
-				if (con != null) {try{ con.close(); } catch (Exception ex){}};
+				
+				Jdbc.close(ps);
+				Jdbc.close(con);
+				
 			}
 		
 		}
@@ -154,10 +158,14 @@ public class UsuarioJdbcDao implements UsuarioDao{
 			
 			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
+			
 		}finally  {
-			if (ps != null) {try{ ps.close(); } catch (Exception ex){}};
-			if (con != null) {try{ con.close(); } catch (Exception ex){}};
+			
+			Jdbc.close(ps);
+			Jdbc.close(con);
+			
 		}
 		
 		return false;
@@ -183,6 +191,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 			ps.setString(1, nif);
 			
 			ResultSet rs= ps.executeQuery();
+			Usuario user=null;
 			
 			if(rs != null){
 				
@@ -195,24 +204,23 @@ public class UsuarioJdbcDao implements UsuarioDao{
 					int id= rs.getInt(1);
 					String login = rs.getString(2);
 					
-					return new Usuario(nombre, email, nif, password, CodColegio,id,login);
-					
+					user= new Usuario(nombre, email, nif, password, CodColegio,id,login);
+					break;
 				}
 				
-			}else{
-				
-				return null;
-				
 			}
-			
-		
+				
+			return user;
+				
 		} catch (SQLException e) {
 			
 			System.out.println(e.getMessage());
 
 		}finally  {
-			if (ps != null) {try{ ps.close(); } catch (Exception ex){}};
-			if (con != null) {try{ con.close(); } catch (Exception ex){}};
+			
+			Jdbc.close(ps);
+			Jdbc.close(con);
+			
 		}
 			
 		return null;
@@ -239,12 +247,16 @@ public class UsuarioJdbcDao implements UsuarioDao{
 			return true;
 			
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
+			
+		}finally{
+			
+			Jdbc.close(ps);
+			Jdbc.close(con);
+			
 		}
-		finally  {
-			if (ps != null) {try{ ps.close(); } catch (Exception ex){}};
-			if (con != null) {try{ con.close(); } catch (Exception ex){}};
-		}
+		
 		return false;
 		
 	}
@@ -265,12 +277,15 @@ public class UsuarioJdbcDao implements UsuarioDao{
 
 			ps.executeUpdate();
 			
-		} catch (SQLException e) {
+		} catch (SQLException e){
+			
 			e.printStackTrace();
-		}
-		finally  {
-			if (ps != null) {try{ ps.close(); } catch (Exception ex){}};
-			if (con != null) {try{ con.close(); } catch (Exception ex){}};
+			
+		}finally{
+			
+			Jdbc.close(ps);
+			Jdbc.close(con);
+			
 		}
 		
 	}

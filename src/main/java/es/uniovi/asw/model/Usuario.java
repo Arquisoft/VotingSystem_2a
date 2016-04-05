@@ -49,7 +49,7 @@ public class Usuario {
 	 *            como login
 	 */
 	public Usuario(String nombre, String email, String NIF, String password,
-			int codColElectoral, int id, String Login) {
+			int codColElectoral, int id, String login) {
 
 		this.nombre = nombre;
 		setEmail(email);
@@ -57,6 +57,7 @@ public class Usuario {
 		this.password = password;
 		this.codColElectoral = codColElectoral;
 		this.id = id;
+		this.login=login;
 
 	}
 
