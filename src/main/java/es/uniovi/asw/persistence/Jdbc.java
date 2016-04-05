@@ -33,7 +33,7 @@ public class Jdbc {
 	private static String USER;
 	private static String PASS;
 
-	Properties database = new Properties();
+	private Properties database = new Properties();
 
 	public Jdbc() {
 
@@ -120,7 +120,7 @@ public class Jdbc {
 				rs.close();
 			} catch (SQLException e) {
 			}
-		;
+
 	}
 
 	public static void close(Statement st) {
@@ -129,7 +129,7 @@ public class Jdbc {
 				st.close();
 			} catch (SQLException e) {
 			}
-		;
+
 	}
 
 	public static void close(Connection c) {
@@ -138,7 +138,7 @@ public class Jdbc {
 				c.close();
 			} catch (SQLException e) {
 			}
-		;
+
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class Jdbc {
 
 		Class.forName(DRIVER).newInstance();
 		Connection con = getConnection();
-		java.sql.Statement stm = con.createStatement();
+		Statement stm = con.createStatement();
 		// stm.execute("drop table Votantes");
 		stm.execute(createTables);
 		stm.execute("truncate table Votantes");

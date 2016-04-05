@@ -49,8 +49,7 @@ public class Usuario {
 	 *            como login
 	 */
 	public Usuario(String nombre, String email, String NIF, String password,
-			int codColElectoral, int id,
-			String Login) {
+			int codColElectoral, int id, String Login) {
 
 		this.nombre = nombre;
 		setEmail(email);
@@ -74,7 +73,8 @@ public class Usuario {
 	 *            que contiene el numero del colegio electoral asignado al
 	 *            usuario
 	 */
-	public Usuario(String nombre, String email, String NIF, int codColElectoral) {
+	public Usuario(String nombre, String email,
+			String NIF,	int codColElectoral) {
 
 		this.nombre = nombre;
 		// this.email = email;
@@ -244,12 +244,7 @@ public class Usuario {
 
 		Matcher comparador = patron.matcher(mail);
 
-		if (comparador.matches()) {
-
-			return true;
-		}
-
-		return false;
+		return comparador.matches();
 
 	}
 
@@ -271,13 +266,8 @@ public class Usuario {
 		numero = numero % 23;
 		String letraArray = String.valueOf(letraDni[numero]);
 
-		if (!letra.equals(letraArray)) {
-
-			return false;
-
-		}
-
-		return true;
+		return !letra.equals(letraArray);
+		
 	}
 
 	/**
