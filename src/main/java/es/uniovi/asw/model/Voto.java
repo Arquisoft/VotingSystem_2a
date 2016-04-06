@@ -4,13 +4,13 @@ public class Voto {
 	
 	private Long idOpcion;
 	private Long idColElect;
-	private Long totVotos;
+	private Long numVotos;
 	
 	public Voto(Long idOpcion, Long idColElect, Long totVotos) {
 
 		this.idOpcion = idOpcion;
 		this.idColElect = idColElect;
-		this.totVotos = totVotos;
+		this.numVotos = totVotos;
 		
 	}
 
@@ -40,13 +40,13 @@ public class Voto {
 	
 	public Long getTotVotos() {
 		
-		return totVotos;
+		return numVotos;
 		
 	}
 	
 	public void setTotVotos(Long totVotos) {
 		
-		this.totVotos = totVotos;
+		this.numVotos = totVotos;
 		
 	}
 	

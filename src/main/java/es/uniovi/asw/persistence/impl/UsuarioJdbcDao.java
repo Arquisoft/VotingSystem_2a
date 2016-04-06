@@ -195,7 +195,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 			
 			if(rs != null){
 				
-				while(rs.next()){
+				if(rs.next()){
 					
 					String nombre = rs.getString(3);
 					String password = rs.getString(7);
@@ -205,7 +205,7 @@ public class UsuarioJdbcDao implements UsuarioDao{
 					String login = rs.getString(2);
 					
 					user= new Usuario(nombre, email, nif, password, CodColegio,id,login);
-					break;
+					
 				}
 				
 			}

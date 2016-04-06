@@ -19,6 +19,7 @@ public class Usuario {
 	private int codColElectoral;
 	private int id;
 	private String login;
+	private boolean votoElectronico;
 
 	/**
 	 * Constructor de la clase Usuario
@@ -209,6 +210,18 @@ public class Usuario {
 	 */
 	public void setLogin(String login) {
 		this.login = login;
+	}
+
+	public boolean isVotoElectronico() {
+		
+		return votoElectronico;
+		
+	}
+
+	public void setVotoElectronico(boolean votoElectronico) {
+		
+		this.votoElectronico = votoElectronico;
+		
 	}
 
 	/**

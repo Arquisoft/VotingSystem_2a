@@ -77,17 +77,22 @@ public class Jdbc {
 	public static Connection getConnection() throws SQLException {
 
 		return DriverManager.getConnection(URL, USER, PASS);
+		
 	}
 
 	public static void close(ResultSet rs, Statement st, Connection c) {
+		
 		close(rs);
 		close(st);
 		close(c);
+		
 	}
 
 	public static void close(ResultSet rs, Statement st) {
+		
 		close(rs);
 		close(st);
+		
 	}
 
 	protected static void close(ResultSet rs) {
@@ -138,18 +143,24 @@ public class Jdbc {
 		stm.execute(QUERIES.getProperty("VACIAR_TABLA_VOTANTES"));
 		stm.close();
 		con.close();
+		
 	}
 
 	private static Properties loadProperties(String fileName) {
+		
 		Properties prop = new Properties();
 		InputStream stream;
 		
 		try {
+			
 			stream = new FileInputStream(fileName);
 			prop.load( stream );
+			
 		} catch (IOException e) {
 		}
+		
 		return prop;
+		
 	}
 	
 	
