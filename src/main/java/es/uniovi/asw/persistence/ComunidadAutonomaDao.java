@@ -1,5 +1,9 @@
 package es.uniovi.asw.persistence;
 
-public interface ComunidadAutonomaDao {
+import es.uniovi.asw.model.ComunidadAutonoma;
 
+public interface ComunidadAutonomaDao {
+	
+	ComunidadAutonoma findById(Long id);
+	
 }

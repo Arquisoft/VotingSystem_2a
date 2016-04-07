@@ -1,8 +1,5 @@
 package es.uniovi.asw.persistence.impl;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,21 +12,7 @@ import es.uniovi.asw.persistence.VotoDao;
 
 public class VotoJdbcDao implements VotoDao {
 
-	private Properties QUERIES;
-	private String fileName = "sql.properties";
-
-	public VotoJdbcDao() {
-
-		try {
-			QUERIES = new Properties();
-			QUERIES.load(new FileInputStream(fileName));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
+	private Properties QUERIES = Jdbc.getQueries();
 
 	@Override
 	public void save(Voto voto) {

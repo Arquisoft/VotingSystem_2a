@@ -170,5 +170,10 @@ public class Jdbc {
 		
 	}
 	
+	public static Properties getQueries(){
+		
+		return QUERIES;
+		
+	}
 	
 }

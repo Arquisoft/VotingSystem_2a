@@ -18,7 +18,7 @@ import es.uniovi.asw.persistence.VotoDao;
  *
  */
 public class SimplePersistenceFactory implements PersistenceFactory {
-
+	
 	@Override
 	public UsuarioDao createUsuarioDao() {
 		
