@@ -94,6 +94,13 @@ public class Jdbc {
 		close(st);
 		
 	}
+	
+	public static void close(Connection c , Statement st) {
+		
+		close(st);
+		close(c);
+		
+	}
 
 	protected static void close(ResultSet rs) {
 		if (rs != null)
