@@ -29,6 +29,7 @@ public class Usuario {
 		this.password = generarPassword(10);
 
 	}
+	
 
 	/**
 	 * Constructor de la clase usuario
@@ -278,7 +279,7 @@ public class Usuario {
 		numero = numero % 23;
 		String letraArray = String.valueOf(letraDni[numero]);
 
-		return !letra.equals(letraArray);
+		return letra.equals(letraArray);
 		
 	}
 
