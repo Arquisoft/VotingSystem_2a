@@ -1,5 +1,10 @@
 package es.uniovi.asw.persistence;
 
-public interface ColegioElectoralDao {
+import es.uniovi.asw.model.ColegioElectoral;
 
+public interface ColegioElectoralDao {
+	
+	ColegioElectoral findById(Long id);
+
+	
 }

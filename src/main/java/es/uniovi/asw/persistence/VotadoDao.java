@@ -1,5 +1,10 @@
 package es.uniovi.asw.persistence;
 
-public interface VotadoDao {
+import es.uniovi.asw.model.Votado;
 
+public interface VotadoDao {
+	
+	public void save(Votado votado);
+	public boolean haVotado(Long idUser,Long idVotacion);
+	
 }

@@ -24,7 +24,7 @@ public class ComunidadAutonomaJdbcDao implements ComunidadAutonomaDao {
 		try {
 			con = Jdbc.getConnection();
 
-			ps = con.prepareStatement(QUERIES.getProperty("FIND_CIRC"));
+			ps = con.prepareStatement(QUERIES.getProperty("FIND_COM"));
 			ps.setLong(1, id);
 			rs=ps.executeQuery();
 			
@@ -43,7 +43,5 @@ public class ComunidadAutonomaJdbcDao implements ComunidadAutonomaDao {
 		return com;
 
 	}
-
-	
 	
 }
