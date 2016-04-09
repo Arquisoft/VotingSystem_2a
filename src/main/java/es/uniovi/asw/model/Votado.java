@@ -5,6 +5,8 @@ public class Votado {
 	private Long idVotacion;
 	private Long idVotante;
 	
+	
+	public Votado(){};
 	public Votado(Long idVotacion, Long idVotante) {
 		
 		this.idVotacion = idVotacion;

@@ -5,6 +5,8 @@ public class Circunscripcion {
 	private Long id;
 	private String nombre;
 	
+	public Circunscripcion(){};
+	
 	public Circunscripcion(Long id, String nombre) {
 
 		this.id = id;

@@ -6,6 +6,8 @@ public class Voto {
 	private Long idColElect;
 	private Long numVotos;
 	
+	
+	public Voto(){};
 	public Voto(Long idOpcion, Long idColElect, Long totVotos) {
 
 		this.idOpcion = idOpcion;

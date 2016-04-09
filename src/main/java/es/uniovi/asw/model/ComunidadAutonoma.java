@@ -5,6 +5,7 @@ public class ComunidadAutonoma {
 	private Long id;
 	private String nombre;
 	
+	public ComunidadAutonoma(){};
 	public ComunidadAutonoma(Long id, String nombre) {
 
 		this.id = id;
