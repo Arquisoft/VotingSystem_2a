@@ -1,8 +1,10 @@
-package es.uniovi.asw.model;
+package es.uniovi.asw.test;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import es.uniovi.asw.model.Usuario;
 
 public class UsuarioTest {
 

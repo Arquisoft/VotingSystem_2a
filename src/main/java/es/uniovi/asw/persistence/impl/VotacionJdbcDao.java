@@ -51,7 +51,7 @@ public class VotacionJdbcDao implements VotacionDao {
 			rs=ps.executeQuery();
 			
 			if(rs.next()){
-				
+
 				vot=new Votacion(id, rs.getString("DEFINICION"));
 				
 			}

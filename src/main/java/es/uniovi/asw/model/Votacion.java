@@ -5,8 +5,16 @@ public class Votacion {
 	private Long id;
 	private String definicion;
 	
-	public Votacion(){};
+	public Votacion() {
+		
+	}
 	
+	public Votacion(Long id, String definicion) {
+		super();
+		this.id = id;
+		this.definicion = definicion;
+	}
+
 	public Long getId() {
 		
 		return id;
