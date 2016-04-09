@@ -9,14 +9,14 @@ import es.uniovi.asw.model.Opcion;
 public class SimpleOpcionService implements OpcionService {
 
 	@Override
-	public Opcion findById(long idOpcion) {
+	public Opcion findById(Long idOpcion) {
 
 		return new FindOpcion().findById(idOpcion);
 		
 	}
 
 	@Override
-	public List<Opcion> listadoOpciones(long idVotacion) {
+	public List<Opcion> listadoOpciones(Long idVotacion) {
 
 		return null;
 		

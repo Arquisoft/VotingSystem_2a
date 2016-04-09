@@ -4,7 +4,7 @@ import es.uniovi.asw.model.Usuario;
 
 public class FindUsuario {
 	
-	public Usuario findById(long idUsuario){
+	public Usuario findById(Long idUsuario){
 		
 		return null;
 		

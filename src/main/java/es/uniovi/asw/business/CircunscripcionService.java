@@ -4,6 +4,6 @@ import es.uniovi.asw.model.Circunscripcion;
 
 public interface CircunscripcionService {
 	
-	Circunscripcion findById(long idCircunscripcion);
+	Circunscripcion findById(Long idCircunscripcion);
 	
 }

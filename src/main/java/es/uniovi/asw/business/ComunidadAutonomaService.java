@@ -4,6 +4,6 @@ import es.uniovi.asw.model.ComunidadAutonoma;
 
 public interface ComunidadAutonomaService {
 	
-	ComunidadAutonoma findById(long idComunidadAutonoma);
+	ComunidadAutonoma findById(Long idComunidadAutonoma);
 	
 }

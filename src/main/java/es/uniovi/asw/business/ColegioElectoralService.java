@@ -4,6 +4,6 @@ import es.uniovi.asw.model.ColegioElectoral;
 
 public interface ColegioElectoralService {
 
-	ColegioElectoral findById(long idColegioElectoral);
+	ColegioElectoral findById(Long idColegioElectoral);
 	
 }

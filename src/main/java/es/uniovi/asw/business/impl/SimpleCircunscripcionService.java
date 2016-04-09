@@ -7,7 +7,7 @@ import es.uniovi.asw.model.Circunscripcion;
 public class SimpleCircunscripcionService implements CircunscripcionService {
 
 	@Override
-	public Circunscripcion findById(long idCircunscripcion) {
+	public Circunscripcion findById(Long idCircunscripcion) {
 		
 		return new FindCircunscripcion().findById(idCircunscripcion);
 	}

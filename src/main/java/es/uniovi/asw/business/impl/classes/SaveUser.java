@@ -6,8 +6,6 @@ public class SaveUser {
 	
 	public void saveUser(Usuario usuario){
 		
-		//return null;
-		
 	}
 
 }

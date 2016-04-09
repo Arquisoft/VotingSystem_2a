@@ -9,7 +9,7 @@ import es.uniovi.asw.model.Usuario;
 public class SimpleUsuarioService implements UsuarioService {
 
 	@Override
-	public Usuario findById(long idUsuario) {
+	public Usuario findById(Long idUsuario) {
 
 		return new FindUsuario().findById(idUsuario);
 		

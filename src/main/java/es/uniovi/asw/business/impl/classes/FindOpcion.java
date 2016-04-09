@@ -4,7 +4,7 @@ import es.uniovi.asw.model.Opcion;
 
 public class FindOpcion {
 	
-	public Opcion findById(long idOpcion){
+	public Opcion findById(Long idOpcion){
 		
 		return null;
 		

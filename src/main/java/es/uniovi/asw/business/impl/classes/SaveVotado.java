@@ -6,9 +6,7 @@ import es.uniovi.asw.model.Votado;
 public class SaveVotado {
 	
 	public void votado(Votado votado){
-		
-		//return null;
-		
+				
 	}
 
 }

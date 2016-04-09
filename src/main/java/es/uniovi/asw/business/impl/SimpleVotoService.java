@@ -9,21 +9,21 @@ import es.uniovi.asw.model.Voto;
 public class SimpleVotoService implements VotoService {
 
 	@Override
-	public Voto findById(long idOpcion, long idColegioElectoral) {
+	public Voto findById(Long idOpcion, Long idColegioElectoral) {
 	
 		return new FindVoto().findById(idOpcion, idColegioElectoral);
 		
 	}
 
 	@Override
-	public void SaveVoto(Voto voto) {
+	public void saveVoto(Voto voto) {
 		
 		new SaveVoto().guardarVoto(voto);
 		
 	}
 
 	@Override
-	public void Update(Voto voto) {
+	public void update(Voto voto) {
 	
 		new UpdateVoto().update(voto);
 		

@@ -6,6 +6,6 @@ import es.uniovi.asw.model.Opcion;
 
 public interface OpcionService {
 	
-	List<Opcion> listadoOpciones(long idVotacion);
-	Opcion findById(long idOpcion);
+	List<Opcion> listadoOpciones(Long idVotacion);
+	Opcion findById(Long idOpcion);
 }

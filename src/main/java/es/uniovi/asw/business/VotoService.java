@@ -4,8 +4,8 @@ import es.uniovi.asw.model.Voto;
 
 public interface VotoService {
 
-	Voto findById(long idOpcion,long idColegioElectoral);
-	void SaveVoto(Voto voto);
-	void Update (Voto voto);
+	Voto findById(Long idOpcion,Long idColegioElectoral);
+	void saveVoto(Voto voto);
+	void update (Voto voto);
 	
 }

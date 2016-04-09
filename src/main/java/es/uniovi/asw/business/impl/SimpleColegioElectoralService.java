@@ -7,7 +7,7 @@ import es.uniovi.asw.model.ColegioElectoral;
 public class SimpleColegioElectoralService implements ColegioElectoralService {
 
 	@Override
-	public ColegioElectoral findById(long idColegioElectoral) {
+	public ColegioElectoral findById(Long idColegioElectoral) {
 
 		return new FindColegioElectoral().findById(idColegioElectoral);
 		

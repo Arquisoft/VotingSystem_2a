@@ -4,6 +4,6 @@ import es.uniovi.asw.model.Votacion;
 
 public interface VotacionService {
 	
-	Votacion getTipoVotacion(long idVotacion);
+	Votacion getTipoVotacion(Long idVotacion);
 	
 }

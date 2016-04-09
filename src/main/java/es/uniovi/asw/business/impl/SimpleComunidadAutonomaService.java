@@ -7,7 +7,7 @@ import es.uniovi.asw.model.ComunidadAutonoma;
 public class SimpleComunidadAutonomaService implements ComunidadAutonomaService {
 
 	@Override
-	public ComunidadAutonoma findById(long idComunidadAutonoma) {
+	public ComunidadAutonoma findById(Long idComunidadAutonoma) {
 
 		return new FindComunidadAutonoma().findById(idComunidadAutonoma);
 		

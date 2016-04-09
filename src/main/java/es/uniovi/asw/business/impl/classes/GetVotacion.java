@@ -4,10 +4,9 @@ import es.uniovi.asw.model.Votacion;
 
 public class GetVotacion {
 	
-	public Votacion getVotacion(long idVotacion){
-		return null;
+	public Votacion getVotacion(Long idVotacion){
 		
-		//return null;
+		return null;
 		
 	}
 
