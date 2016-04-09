@@ -12,18 +12,21 @@ public class SimpleVotoService implements VotoService {
 	public Voto findById(long idOpcion, long idColegioElectoral) {
 	
 		return new FindVoto().findById(idOpcion, idColegioElectoral);
+		
 	}
 
 	@Override
 	public void SaveVoto(Voto voto) {
 		
 		new SaveVoto().guardarVoto(voto);
+		
 	}
 
 	@Override
 	public void Update(Voto voto) {
 	
 		new UpdateVoto().update(voto);
+		
 	}
 
 }

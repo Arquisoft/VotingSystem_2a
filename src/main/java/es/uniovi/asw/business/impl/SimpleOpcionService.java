@@ -10,14 +10,16 @@ public class SimpleOpcionService implements OpcionService {
 
 	@Override
 	public Opcion findById(long idOpcion) {
-		// TODO Auto-generated method stub
+
 		return new FindOpcion().findById(idOpcion);
+		
 	}
 
 	@Override
 	public List<Opcion> listadoOpciones(long idVotacion) {
-		// TODO Auto-generated method stub
+
 		return null;
+		
 	}
 
 }

@@ -10,20 +10,23 @@ public class SimpleUsuarioService implements UsuarioService {
 
 	@Override
 	public Usuario findById(long idUsuario) {
-		// TODO Auto-generated method stub
+
 		return new FindUsuario().findById(idUsuario);
+		
 	}
 
 	@Override
 	public void saveUser(Usuario usuario) {
+		
 		new SaveUser().saveUser(usuario);
 
 	}
 
 	@Override
 	public boolean puedeVotar(Usuario usuario) {
-		// TODO Auto-generated method stub
+
 		return new PuedeVotar().puedeVotar(usuario);
+		
 	}
 
 }

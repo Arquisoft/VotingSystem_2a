@@ -8,8 +8,9 @@ public class SimpleComunidadAutonomaService implements ComunidadAutonomaService 
 
 	@Override
 	public ComunidadAutonoma findById(long idComunidadAutonoma) {
-		// TODO Auto-generated method stub
+
 		return new FindComunidadAutonoma().findById(idComunidadAutonoma);
+		
 	}
 
 }

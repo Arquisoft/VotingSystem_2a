@@ -8,8 +8,9 @@ public class SimpleColegioElectoralService implements ColegioElectoralService {
 
 	@Override
 	public ColegioElectoral findById(long idColegioElectoral) {
-		// TODO Auto-generated method stub
+
 		return new FindColegioElectoral().findById(idColegioElectoral);
+		
 	}
 
 }

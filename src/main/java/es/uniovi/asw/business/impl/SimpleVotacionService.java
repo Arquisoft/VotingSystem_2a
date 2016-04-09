@@ -6,10 +6,10 @@ import es.uniovi.asw.model.Votacion;
 
 public class SimpleVotacionService implements VotacionService {
 	
-	
-
 	@Override
 	public Votacion getTipoVotacion(long idVotacion) {
+		
 		return new GetVotacion().getVotacion(idVotacion);
+		
 	}
 }
