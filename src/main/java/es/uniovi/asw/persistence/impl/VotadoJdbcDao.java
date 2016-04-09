@@ -36,7 +36,7 @@ public class VotadoJdbcDao implements VotadoDao {
 		}
 		
 	}
-
+	
 	@Override
 	public boolean haVotado(Long idUser, Long idVotacion) {
 
@@ -57,7 +57,6 @@ public class VotadoJdbcDao implements VotadoDao {
 				
 				return true;
 				
-				
 			}
 			
 		} catch (SQLException e) {
@@ -65,7 +64,6 @@ public class VotadoJdbcDao implements VotadoDao {
 		}finally{
 			Jdbc.close(rs, ps, con);
 		}
-		
 		
 		return false;
 		
