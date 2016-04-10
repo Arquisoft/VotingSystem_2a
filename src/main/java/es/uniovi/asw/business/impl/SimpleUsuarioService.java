@@ -9,16 +9,16 @@ import es.uniovi.asw.model.Usuario;
 public class SimpleUsuarioService implements UsuarioService {
 
 	@Override
-	public Usuario findById(Long idUsuario) {
+	public Usuario findByNif(String nif) {
 
-		return new FindUsuario().findById(idUsuario);
+		return new FindUsuario().findByNif(nif);
 		
 	}
 
 	@Override
-	public void saveUser(Usuario usuario) {
+	public boolean saveUser(Usuario usuario) {
 		
-		new SaveUser().saveUser(usuario);
+		return new SaveUser().saveUser(usuario);
 
 	}
 

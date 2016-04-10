@@ -29,42 +29,42 @@ public class SimpleserviceFactory implements ServiceFactory {
 	@Override
 	public ComunidadAutonomaService createComunidadAutonomaService() {
 
-		return null;
+		return new SimpleComunidadAutonomaService();
 		
 	}
 
 	@Override
 	public OpcionService createOpcionService() {
 		
-		return null;
+		return new SimpleOpcionService();
 		
 	}
 
 	@Override
 	public UsuarioService createUsuarioService() {
 
-		return null;
+		return new SimpleUsuarioService();
 		
 	}
 
 	@Override
 	public VotacionService createVotacionService() {
 
-		return null;
+		return new SimpleVotacionService();
 		
 	}
 
 	@Override
 	public VotadoService createVotadoService() {
 
-		return null;
+		return new SimpleVotadoService();
 		
 	}
 
 	@Override
 	public VotoService createVotoService() {
 
-		return null;
+		return new SimpleVotoService();
 		
 	}
 

@@ -4,6 +4,6 @@ import es.uniovi.asw.model.Votado;
 
 public interface VotadoService {
 
-	void votado(Votado votado);
+	boolean votado(Votado votado);
 	
 }

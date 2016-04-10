@@ -7,9 +7,9 @@ import es.uniovi.asw.model.Votado;
 public class SimpleVotadoService implements VotadoService {
 
 	@Override
-	public void votado(Votado votado) {
+	public boolean votado(Votado votado) {
 
-		new SaveVotado().votado(votado);
+		return new SaveVotado().votado(votado);
 		
 	}
 

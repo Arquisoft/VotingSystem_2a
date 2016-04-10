@@ -16,16 +16,16 @@ public class SimpleVotoService implements VotoService {
 	}
 
 	@Override
-	public void saveVoto(Voto voto) {
+	public boolean saveVoto(Voto voto) {
 		
-		new SaveVoto().guardarVoto(voto);
+		return new SaveVoto().guardarVoto(voto);
 		
 	}
 
 	@Override
-	public void update(Voto voto) {
+	public boolean update(Voto voto) {
 	
-		new UpdateVoto().update(voto);
+		return new UpdateVoto().update(voto);
 		
 	}
 
