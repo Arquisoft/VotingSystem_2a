@@ -8,6 +8,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -138,16 +140,39 @@ public class Jdbc {
 	 * @throws SQLException
 	 */
 	private static void crearDB()
-			throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+			throws ClassNotFoundException, InstantiationException,
+			IllegalAccessException, SQLException {
 
-		String createTables = QUERIES.getProperty("CREAR_TABLA_VOTANTES");
+		List<String> listaQueries= new ArrayList<String>();
+		
+		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_VOTANTES"));
+		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_COL_ELECT"));
+		listaQueries.add( QUERIES.getProperty("CREAR_TABLA_VOTACIONES"));
+		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_VOTOS"));
+		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_HAN_VOTADO"));
+		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_OPCIONES"));
+		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_COM_AUTONOMAS"));
+		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_CIRCUNSCRIPCIONES"));
+		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_VOTANTES"));
 
+		for(String query: listaQueries){
+		
+			crearTabla(query);
+			
+		}
+		
+	}
+	
+	private static void crearTabla(String createTables)
+			throws SQLException, InstantiationException,
+			IllegalAccessException, ClassNotFoundException {
+		
 		Class.forName(DRIVER).newInstance();
 		Connection con = getConnection();
 		Statement stm = con.createStatement();
-		// stm.execute("drop table Votantes");
+		
 		stm.execute(createTables);
-		stm.execute(QUERIES.getProperty("VACIAR_TABLA_VOTANTES"));
+
 		stm.close();
 		con.close();
 		
