@@ -4,7 +4,7 @@ import es.uniovi.asw.model.Circunscripcion;
 
 public interface CircunscripcionDao {
 	
-	void save(Circunscripcion circ);
+	boolean save(Circunscripcion circ);
 	Circunscripcion findById(Long id);
 	
 }

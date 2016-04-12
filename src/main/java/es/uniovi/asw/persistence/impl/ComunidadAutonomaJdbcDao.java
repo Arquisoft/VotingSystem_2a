@@ -44,7 +44,7 @@ public class ComunidadAutonomaJdbcDao implements ComunidadAutonomaDao {
 	}
 
 	@Override
-	public void save(ComunidadAutonoma com) {
+	public boolean save(ComunidadAutonoma com) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
@@ -54,13 +54,17 @@ public class ComunidadAutonomaJdbcDao implements ComunidadAutonomaDao {
 			ps = con.prepareStatement(QUERIES.getProperty("SAVE_COM"));
 			ps.setString(1, com.getNombre());
 			
-			ps.executeQuery();
+			int num=ps.executeUpdate();
+			
+			return (num>0);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			Jdbc.close(con, ps);
 		}
+		
+		return false;
 		
 	}
 	

@@ -47,7 +47,7 @@ public class CircunscripcionJdbcDao implements CircunscripcionDao {
 	}
 
 	@Override
-	public void save(Circunscripcion circ) {
+	public boolean save(Circunscripcion circ) {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -58,13 +58,16 @@ public class CircunscripcionJdbcDao implements CircunscripcionDao {
 			ps = con.prepareStatement(QUERIES.getProperty("SAVE_CIRC"));
 			ps.setString(1, circ.getNombre());
 			
-			ps.executeQuery();
+			int num=ps.executeUpdate();
+			
+			return (num>0);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			Jdbc.close(con, ps);
 		}
+		return false;
 		
 	}
 

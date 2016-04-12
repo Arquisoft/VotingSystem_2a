@@ -4,7 +4,7 @@ import es.uniovi.asw.model.ComunidadAutonoma;
 
 public interface ComunidadAutonomaDao {
 	
-	void save(ComunidadAutonoma com);
+	boolean save(ComunidadAutonoma com);
 	ComunidadAutonoma findById(Long id);
 	
 }

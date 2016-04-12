@@ -45,7 +45,7 @@ public class ColegioElectoralJdbcDao implements ColegioElectoralDao {
 	}
 
 	@Override
-	public void save(ColegioElectoral col) {
+	public boolean save(ColegioElectoral col) {
 		
 			Connection con = null;
 			PreparedStatement ps = null;
@@ -58,18 +58,21 @@ public class ColegioElectoralJdbcDao implements ColegioElectoralDao {
 				ps.setLong(1, col.getIdCircunscripcion());
 				ps.setLong(2, col.getIdComAutonoma());
 				ps.setBoolean(3, false);
-				ps.executeQuery();
+				int num=ps.executeUpdate();
+				
+				return (num>0);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}finally {
 				Jdbc.close(con, ps);
 			}
+			return false;
 		
 	}
 
 	@Override
-	public void update(ColegioElectoral col) {
+	public boolean update(ColegioElectoral col) {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -80,13 +83,17 @@ public class ColegioElectoralJdbcDao implements ColegioElectoralDao {
 			
 			ps = con.prepareStatement(QUERIES.getProperty("UPDATE_COL"));
 			ps.setBoolean(3, col.isVotoFisico());
-			ps.executeQuery();
+			
+			int num=ps.executeUpdate();
+			
+			return (num>0);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			Jdbc.close(con, ps);
 		}
+		return false;
 		
 	}
 
