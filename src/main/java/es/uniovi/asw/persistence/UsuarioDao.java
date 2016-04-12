@@ -9,7 +9,7 @@ import es.uniovi.asw.model.Usuario;
  * En esta versi��n aparecen los otros m��todos b��sicos de un servicio 
  * de persistencia
  * 
- * @author alb
+ * @author dario
  *
  */
 public interface UsuarioDao {
@@ -17,9 +17,7 @@ public interface UsuarioDao {
 	List<Usuario> getUsuarios();
 	
 	boolean save(Usuario a) ;
-	
-	boolean update(Usuario a) ;
-	
+		
 	boolean delete(String login) ;
 	
 	Usuario findByNIF(String login) ;

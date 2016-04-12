@@ -36,12 +36,32 @@ public class ComunidadAutonomaJdbcDao implements ComunidadAutonomaDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		return com;
 
+	}
+
+	@Override
+	public void save(ComunidadAutonoma com) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = Jdbc.getConnection();
+
+			ps = con.prepareStatement(QUERIES.getProperty("SAVE_COM"));
+			ps.setString(1, com.getNombre());
+			
+			ps.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Jdbc.close(con, ps);
+		}
+		
 	}
 	
 }

@@ -19,9 +19,9 @@ public class ColegioElectoralTest {
 		c.setIdCircunscripcion((long)2);
 		assertEquals("2", Long.toString(c.getIdCircunscripcion()));
 		
-		assertEquals("1", Long.toString(c.getIdPComAutonoma()));
-		c.setIdPComAutonoma((long)2);
-		assertEquals("2", Long.toString(c.getIdPComAutonoma()));
+		assertEquals("1", Long.toString(c.getIdComAutonoma()));
+		c.setIdComAutonoma((long)2);
+		assertEquals("2", Long.toString(c.getIdComAutonoma()));
 		
 		
 	}

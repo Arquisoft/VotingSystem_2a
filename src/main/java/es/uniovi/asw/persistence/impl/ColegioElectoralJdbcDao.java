@@ -32,7 +32,8 @@ public class ColegioElectoralJdbcDao implements ColegioElectoralDao {
 				
 				col = new ColegioElectoral(id,
 						rs.getLong("CODCINCURSCRIPCION"),
-						rs.getLong("CODCOMAUTONOMA"));
+						rs.getLong("CODCOMAUTONOMA"),
+						rs.getBoolean("VOTOSFISICOS"));
 				
 			}
 			
@@ -41,6 +42,52 @@ public class ColegioElectoralJdbcDao implements ColegioElectoralDao {
 		}
 
 		return col;
+	}
+
+	@Override
+	public void save(ColegioElectoral col) {
+		
+			Connection con = null;
+			PreparedStatement ps = null;
+			
+			try {
+				
+				con = Jdbc.getConnection();
+				
+				ps = con.prepareStatement(QUERIES.getProperty("SAVE_COL"));
+				ps.setLong(1, col.getIdCircunscripcion());
+				ps.setLong(2, col.getIdComAutonoma());
+				ps.setBoolean(3, false);
+				ps.executeQuery();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				Jdbc.close(con, ps);
+			}
+		
+	}
+
+	@Override
+	public void update(ColegioElectoral col) {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			
+			con = Jdbc.getConnection();
+			
+			ps = con.prepareStatement(QUERIES.getProperty("UPDATE_COL"));
+			ps.setBoolean(3, col.isVotoFisico());
+			ps.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Jdbc.close(con, ps);
+		}
+		
 	}
 
 }

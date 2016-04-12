@@ -37,12 +37,35 @@ public class CircunscripcionJdbcDao implements CircunscripcionDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			Jdbc.close(rs, ps, con);
 		}
 
 		return circ;
 
+	}
+
+	@Override
+	public void save(Circunscripcion circ) {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = Jdbc.getConnection();
+
+			ps = con.prepareStatement(QUERIES.getProperty("SAVE_CIRC"));
+			ps.setString(1, circ.getNombre());
+			
+			ps.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Jdbc.close(con, ps);
+		}
+		
 	}
 
 }

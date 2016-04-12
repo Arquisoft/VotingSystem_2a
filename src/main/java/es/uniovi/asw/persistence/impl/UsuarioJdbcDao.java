@@ -120,14 +120,7 @@ public class UsuarioJdbcDao implements UsuarioDao {
 		return false;
 
 	}
-
-	@Override
-	public boolean update(Usuario a) {
-
-		return false;
-
-	}
-
+	
 	/**
 	 * Metodo para eliminar un usuario de la bd
 	 * 
