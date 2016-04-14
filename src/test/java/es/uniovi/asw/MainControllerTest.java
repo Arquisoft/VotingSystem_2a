@@ -35,7 +35,7 @@ public class MainControllerTest {
 
   @Test
   public void testLanding() throws Exception {
-    mvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string(containsString("Votaciones")));
+    mvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string(containsString("Votacion")));
   }
 
 }
