@@ -14,7 +14,7 @@ public class VotacionJdbcDao implements VotacionDao {
 	private Properties QUERIES = Jdbc.getQueries();
 	
 	@Override
-	public void save(Votacion votacion) {
+	public boolean save(Votacion votacion) {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -25,13 +25,16 @@ public class VotacionJdbcDao implements VotacionDao {
 			ps=con.prepareStatement(QUERIES.getProperty("SAVE_VOTACION"));
 			ps.setString(1, votacion.getDefinicion());
 			
-			ps.executeQuery();
+			int num=ps.executeUpdate();
+			
+			return (num>0);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			Jdbc.close(con, ps);
 		}
+		return false;
 		
 	}
 
@@ -44,12 +47,13 @@ public class VotacionJdbcDao implements VotacionDao {
 		Votacion vot=null;
 		
 		try {
+			
 			con=Jdbc.getConnection();
 			ps=con.prepareStatement(QUERIES.getProperty("FIND_VOTACION"));
 			ps.setLong(1, id);
-			
+			//System.out.println(QUERIES.getProperty("FIND_VOTACION"));
 			rs=ps.executeQuery();
-			
+			//System.out.println(rs);
 			if(rs.next()){
 
 				vot=new Votacion(id, rs.getString("DEFINICION"));

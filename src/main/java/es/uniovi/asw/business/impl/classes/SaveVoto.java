@@ -7,8 +7,8 @@ public class SaveVoto {
 	
 	public boolean guardarVoto(Voto voto){
 		if(voto != null){
-			Factories.service.createVotoService().saveVoto(voto);
-			return true;
+			
+			return Factories.persistence.createVotoDao().save(voto);
 		}
 		return false;
 				

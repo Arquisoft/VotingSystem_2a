@@ -25,9 +25,16 @@ public class VotoTest {
 		c.setTotVotos((long)2);
 		assertEquals("2", Long.toString(c.getTotVotos()));
 		
-		//boolean guardado=Factories.persistence.createVotoDao().save(c);
-		//assertEquals(true,guardado);
-		assertEquals(c,Factories.persistence.createVotoDao().find((long)2, (long)2));
+		c=  new Voto();
+		c.setIdOpcion((long)1);
+		c.setIdColElect((long)1);
+		c.setTotVotos((long)2);
+		
+		boolean guardado=Factories.service.createVotoService().saveVoto(c);
+		assertEquals(true,guardado);
+		
+		Voto aux=Factories.service.createVotoService().findById((long)1, (long)1);
+		assertEquals(2,(long)aux.getTotVotos());
 		
 	}
 

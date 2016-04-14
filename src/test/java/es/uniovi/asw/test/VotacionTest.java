@@ -11,15 +11,27 @@ public class VotacionTest {
 
 	@Test
 	public void test() {
-		Votacion v = new Votacion();
-		v.setDefinicion("Hola");
-		assertEquals("Hola", v.getDefinicion());
 		
-		v.setId((long)1);
+		Votacion v = new Votacion((long)1,"Votacion al Senado");
+		
+		assertEquals("Votacion al Senado", v.getDefinicion());
+		v.setDefinicion("Votacion al Congreso");
+		assertEquals("Votacion al Congreso", v.getDefinicion());
+		
 		assertEquals("1", Long.toString(v.getId()));
+		v.setId((long)2);
+		assertEquals("2", Long.toString(v.getId()));
 		
-		//boolean guardado=Factories.persistence.createVotacionDao().save(v);
-		assertEquals(v,Factories.persistence.createVotacionDao().findById((long)1));
+		v= new Votacion();
+		v.setDefinicion("Votacion al Congreso");
+		
+		boolean guardado=Factories.service.createVotacionService().save(v);
+		
+		assertTrue(guardado);
+		Factories.service.createVotacionService().getTipoVotacion((long)1);
+		
+		//assertEquals("Votacion al Congreso",aux.getDefinicion());
+		
 	}
 
 }

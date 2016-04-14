@@ -94,7 +94,8 @@ public class UsuarioJdbcDao implements UsuarioDao {
 				ps.setString(4, user.getNIF());
 				ps.setInt(5, user.getCodColElectoral());
 				ps.setString(6, user.getPassword());
-
+				ps.setBoolean(7, user.isVotoElectronico());
+				
 				rows = ps.executeUpdate();
 				if (rows != 1) {
 					System.out.println("User "

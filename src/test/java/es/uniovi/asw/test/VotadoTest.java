@@ -21,13 +21,17 @@ public class VotadoTest {
 		c.setIdVotante((long)2);
 		assertEquals("2", Long.toString(c.getIdVotante()));
 	
+		c= new Votado();
+		c.setIdVotacion((long)1);
+		c.setIdVotante((long)2);
 		
-		//boolean guardado = Factories.persistence.createVotadoDao().save(c);
-		//assertEquals(true, guardado);
+		boolean guardado = Factories.service.createVotadoService().votado(c);
+		assertEquals(true, guardado);
 		
-		boolean haVotado = Factories.persistence.createVotadoDao().haVotado((long)2, (long)2);
+		boolean haVotado = Factories.service.createVotadoService().haVotado((long)2, (long)2);
+		assertEquals(false,haVotado);
+		haVotado = Factories.service.createVotadoService().haVotado((long)2, (long)1);
 		assertEquals(true,haVotado);
-		
 	}
 
 }

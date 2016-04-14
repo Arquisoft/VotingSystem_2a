@@ -9,8 +9,7 @@ public class GetVotacion {
 		
 		if(idVotacion!=null){
 			
-			return Factories.persistence.createVotacionDao()
-					.findById(idVotacion);
+			return Factories.persistence.createVotacionDao().findById(idVotacion);
 			
 		}
 		

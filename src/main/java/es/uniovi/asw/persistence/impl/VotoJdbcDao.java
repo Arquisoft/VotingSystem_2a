@@ -15,7 +15,7 @@ public class VotoJdbcDao implements VotoDao {
 	private Properties QUERIES = Jdbc.getQueries();
 
 	@Override
-	public void save(Voto voto) {
+	public boolean save(Voto voto) {
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -29,18 +29,22 @@ public class VotoJdbcDao implements VotoDao {
 			ps.setLong(2, voto.getIdColElect());
 			ps.setLong(3, voto.getTotVotos());
 
-			ps.executeQuery();
+			int num=ps.executeUpdate();
 
+			return (num>0);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			Jdbc.close(con, ps);
 		}
+		
+		return false;
 
 	}
 
 	@Override
-	public void update(Voto voto) {
+	public boolean update(Voto voto) {
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -50,11 +54,13 @@ public class VotoJdbcDao implements VotoDao {
 			con = Jdbc.getConnection();
 			ps = con.prepareStatement(QUERIES.getProperty("UPDATE_VOTE"));
 
-			ps.setLong(1, voto.getTotVotos() + 1);
+			ps.setLong(1, voto.getTotVotos()+1);
 			ps.setLong(2, voto.getIdOpcion());
 			ps.setLong(3, voto.getIdColElect());
 
-			ps.executeQuery();
+			int num=ps.executeUpdate();
+
+			return (num>0);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,6 +68,7 @@ public class VotoJdbcDao implements VotoDao {
 		} finally {
 			Jdbc.close(con, ps);
 		}
+		return false;
 
 	}
 
@@ -76,7 +83,7 @@ public class VotoJdbcDao implements VotoDao {
 		try {
 
 			con = Jdbc.getConnection();
-			ps = con.prepareStatement(QUERIES.getProperty("UPDATE_VOTE"));
+			ps = con.prepareStatement(QUERIES.getProperty("FIND_VOTE"));
 			ps.setLong(1, idOpcion);
 			ps.setLong(2, idColElect);
 
@@ -84,7 +91,7 @@ public class VotoJdbcDao implements VotoDao {
 
 			if(rs.next()){
 				
-				Long totVotos=Long.valueOf(rs.getString("nombre"));
+				Long totVotos=rs.getLong("totVotos");
 				voto = new Voto(idOpcion, idColElect, totVotos);
 				
 			}

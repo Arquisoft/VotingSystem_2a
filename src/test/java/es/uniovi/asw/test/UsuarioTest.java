@@ -20,31 +20,39 @@ public class UsuarioTest {
 		u.setLogin("F");
 		assertEquals("F", u.getLogin());
 		
-		//
 		assertEquals("user1@email.com", u.getEmail());
 		u.setEmail("user2@email.com");
 		assertEquals("user2@email.com", u.getEmail());
-		//
+		
 		assertEquals("71778298J",u.getNIF());
 		u.setNIF("71900054F");
 		assertEquals("71900054F", u.getNIF());
-		//
+		
 		assertEquals("a", u.getPassword());
 		u.setPassword("b");
 		assertEquals("b", u.getPassword());
-		//
+		
 		assertEquals(1, u.getId());
 		
 		assertEquals(1, u.getCodColElectoral());
 		u.setCodColElectoral(2);
 		assertEquals(2, u.getCodColElectoral());
 		
-		boolean guardado= Factories.persistence.createUsuarioDao().save(u);
+		
+		u = new Usuario();
+		u.setNombre("Dario");
+		u.setLogin("Dario");
+		u.setCodColElectoral(1);
+		u.setEmail("user2@email.com");
+		u.setVotoElectronico(true);
+		u.setNIF("71900054F");
+		
+		boolean guardado= Factories.service.createUsuarioService().saveUser(u);
 		assertEquals(true, guardado);
 		
-		assertEquals(u,Factories.persistence.createUsuarioDao().findByNIF("71900054F"));
-		boolean borrado= Factories.persistence.createUsuarioDao().delete("F");
-		assertEquals(true, borrado);
+		Usuario aux =  Factories.service.createUsuarioService().findByNif("71900054F");
+		
+		assertEquals("Dario",aux.getNombre());
 		
 	}
 

@@ -2,6 +2,7 @@ package es.uniovi.asw.business.impl;
 
 import es.uniovi.asw.business.VotacionService;
 import es.uniovi.asw.business.impl.classes.GetVotacion;
+import es.uniovi.asw.business.impl.classes.SaveVot;
 import es.uniovi.asw.model.Votacion;
 
 public class SimpleVotacionService implements VotacionService {
@@ -10,6 +11,13 @@ public class SimpleVotacionService implements VotacionService {
 	public Votacion getTipoVotacion(Long idVotacion) {
 		
 		return new GetVotacion().getVotacion(idVotacion);
+		
+	}
+
+	@Override
+	public boolean save(Votacion vot) {
+
+		return new SaveVot().save(vot);
 		
 	}
 }

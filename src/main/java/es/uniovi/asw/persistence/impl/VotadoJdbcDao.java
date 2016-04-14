@@ -27,7 +27,7 @@ public class VotadoJdbcDao implements VotadoDao {
 			ps.setLong(1, votado.getIdVotante());
 			ps.setLong(2, votado.getIdVotacion());
 			
-			ps.executeQuery();
+			ps.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -47,7 +47,7 @@ public class VotadoJdbcDao implements VotadoDao {
 		try {
 			
 			con=Jdbc.getConnection();
-			ps=con.prepareStatement(QUERIES.getProperty("SAVE_VOTADO"));
+			ps=con.prepareStatement(QUERIES.getProperty("FIND_VOTADO"));
 			ps.setLong(1, idUser);
 			ps.setLong(2, idVotacion);
 			
