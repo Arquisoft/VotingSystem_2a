@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Usuario;
 
 public class UsuarioTest {
@@ -38,6 +39,12 @@ public class UsuarioTest {
 		u.setCodColElectoral(2);
 		assertEquals(2, u.getCodColElectoral());
 		
+		boolean guardado= Factories.persistence.createUsuarioDao().save(u);
+		assertEquals(true, guardado);
+		
+		assertEquals(u,Factories.persistence.createUsuarioDao().findByNIF("71900054F"));
+		boolean borrado= Factories.persistence.createUsuarioDao().delete("F");
+		assertEquals(true, borrado);
 		
 	}
 

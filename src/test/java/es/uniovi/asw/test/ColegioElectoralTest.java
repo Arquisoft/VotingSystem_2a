@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.ColegioElectoral;
 
 public class ColegioElectoralTest {
@@ -23,6 +24,10 @@ public class ColegioElectoralTest {
 		c.setIdComAutonoma((long)2);
 		assertEquals("2", Long.toString(c.getIdComAutonoma()));
 		
+		boolean guardado= Factories.persistence.createColegioElectoralDao().save(c);
+		assertEquals(true, guardado);
+		
+		assertEquals(c,Factories.persistence.createCircunscripcionDao().findById((long)2));
 		
 	}
 
