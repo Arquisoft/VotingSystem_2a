@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import es.uniovi.asw.factories.Factories;
+import es.uniovi.asw.model.Usuario;
 import es.uniovi.asw.model.Votado;
 
 public class VotadoTest {
@@ -19,7 +21,13 @@ public class VotadoTest {
 		assertEquals("1", Long.toString(c.getIdVotante()));
 		c.setIdVotante((long)2);
 		assertEquals("2", Long.toString(c.getIdVotante()));
+	
 		
+		//boolean guardado = Factories.persistence.createVotadoDao().save(c);
+		//assertEquals(true, guardado);
+		
+		boolean haVotado = Factories.persistence.createVotadoDao().haVotado((long)2, (long)2);
+		assertEquals(true,haVotado);
 		
 	}
 

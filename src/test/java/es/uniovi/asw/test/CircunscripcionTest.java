@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Circunscripcion;
 
 public class CircunscripcionTest {
@@ -15,8 +16,15 @@ public class CircunscripcionTest {
 		c.setNombre("c2");
 		assertEquals("c2", c.getNombre());
 		assertEquals("1", Long.toString(c.getId()));
-		c.setId((long)2);
-		assertEquals("2", Long.toString(c.getId()));
+		c.setId((long)3);
+		assertEquals("3", Long.toString(c.getId()));
+		
+		Circunscripcion t = new Circunscripcion();
+		t.setId((long)2);
+		boolean guardado= Factories.persistence.createCircunscripcionDao().save(t);
+		
+		assertEquals(true, guardado);
+		assertEquals(t,Factories.persistence.createCircunscripcionDao().findById((long)2));
+		
 	}
-
 }
