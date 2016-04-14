@@ -17,8 +17,8 @@ public class Main {
 	public ModelAndView landing(Model model) {
 
 		LOG.info("Landing page access");
-		//return new ModelAndView("landing");
-		return new ModelAndView("votaciones");
+		return new ModelAndView("landing");
+		//return new ModelAndView("votaciones");
 	}
 
 }
