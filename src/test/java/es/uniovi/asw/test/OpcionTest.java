@@ -3,8 +3,6 @@ package es.uniovi.asw.test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.springframework.data.domain.Persistable;
-
 import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Opcion;
 
@@ -27,9 +25,29 @@ public class OpcionTest {
 		o.setDescripcion("Rajoy");
 		assertEquals("Rajoy", o.getDescripcion());
 		
-		//boolean guardado= Factories.persistence.createOpcionDao().save(o);
-		//assertEquals(true,guardado):
-		assertEquals(o,Factories.persistence.createOpcionDao().findById((long)2));
+		o= new Opcion();
+		o.setIdVotacion((long)1);
+		o.setDescripcion("PP");
+		
+		boolean guardado= Factories.service.createOpcionService().save(o);
+		
+		assertEquals(true,guardado);
+		
+		o= new Opcion();
+		o.setIdVotacion((long)1);
+		o.setDescripcion("PSOE");
+		
+		guardado= Factories.service.createOpcionService().save(o);
+		
+		assertEquals(true,guardado);
+		
+		Opcion aux=Factories.service.createOpcionService().findById((long)1);
+		
+		assertEquals("PP",aux.getDescripcion());
+		
+		//assertEquals(2,Factories.service.createOpcionService().listadoOpciones((long)1));
+
+		
 	}
 
 }

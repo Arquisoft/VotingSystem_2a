@@ -76,6 +76,7 @@ public class ColegioElectoralJdbcDao implements ColegioElectoralDao {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
+		//QUERIES= loadProperties("./src/main/java/sql.properties");
 		
 		try {
 			
@@ -97,4 +98,6 @@ public class ColegioElectoralJdbcDao implements ColegioElectoralDao {
 		
 	}
 
+	
+	
 }

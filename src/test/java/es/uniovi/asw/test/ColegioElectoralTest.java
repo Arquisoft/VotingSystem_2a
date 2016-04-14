@@ -24,10 +24,17 @@ public class ColegioElectoralTest {
 		c.setIdComAutonoma((long)2);
 		assertEquals("2", Long.toString(c.getIdComAutonoma()));
 		
-		boolean guardado= Factories.persistence.createColegioElectoralDao().save(c);
+	
+		ColegioElectoral c2= new ColegioElectoral();
+		c2.setIdCircunscripcion((long)10);
+		c2.setIdComAutonoma((long)13);
+		boolean guardado= Factories.service.createColegioElectoralService().save(c2);
 		assertEquals(true, guardado);
 		
-		assertEquals(c,Factories.persistence.createCircunscripcionDao().findById((long)2));
+		ColegioElectoral aux=Factories.service.createColegioElectoralService().findById((long)1);
+		
+		assertEquals(10, (long)aux.getIdCircunscripcion());
+		assertEquals(13, (long)aux.getIdComAutonoma());
 		
 	}
 

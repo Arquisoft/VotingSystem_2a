@@ -20,11 +20,15 @@ public class CircunscripcionTest {
 		assertEquals("3", Long.toString(c.getId()));
 		
 		Circunscripcion t = new Circunscripcion();
-		t.setId((long)2);
-		boolean guardado= Factories.persistence.createCircunscripcionDao().save(t);
+		t.setNombre("Instituto Jovellanos");
+	
+		boolean guardado=Factories.service.createCircunscripcionService().save(t); 
+				//Factories.persistence.createCircunscripcionDao().save(t);
 		
 		assertEquals(true, guardado);
-		assertEquals(t,Factories.persistence.createCircunscripcionDao().findById((long)2));
+		Circunscripcion aux = Factories.service.createCircunscripcionService().findById((long)1);
+		//System.out.println(aux.getNombre());
+		assertEquals(t.getNombre(),aux.getNombre());
 		
 	}
 }

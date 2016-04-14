@@ -48,7 +48,7 @@ public class OpcionJdbcDao implements OpcionDao {
 	}
 
 	@Override
-	public void save(Opcion opcion) {
+	public boolean save(Opcion opcion) {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -57,16 +57,20 @@ public class OpcionJdbcDao implements OpcionDao {
 			
 			con=Jdbc.getConnection();
 			ps=con.prepareStatement(QUERIES.getProperty("SAVE_OPCION"));
-			ps.setLong(1, opcion.getId());
+			ps.setLong(1, opcion.getIdVotacion());
 			ps.setString(2, opcion.getDescripcion());
 			
-			ps.executeQuery();
+			int num=ps.executeUpdate();
+			
+			return (num>0);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			Jdbc.close(con, ps);
 		}
+		
+		return false;
 		
 	}
 

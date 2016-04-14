@@ -4,6 +4,7 @@ import java.util.List;
 
 import es.uniovi.asw.business.OpcionService;
 import es.uniovi.asw.business.impl.classes.FindOpcion;
+import es.uniovi.asw.business.impl.classes.SaveOpc;
 import es.uniovi.asw.model.Opcion;
 
 public class SimpleOpcionService implements OpcionService {
@@ -19,6 +20,13 @@ public class SimpleOpcionService implements OpcionService {
 	public List<Opcion> listadoOpciones(Long idVotacion) {
 
 		return null;
+		
+	}
+
+	@Override
+	public boolean save(Opcion op) {
+		
+		return new SaveOpc().save(op);
 		
 	}
 

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import es.uniovi.asw.factories.Factories;
-import es.uniovi.asw.model.Usuario;
 import es.uniovi.asw.model.Votado;
 
 public class VotadoTest {

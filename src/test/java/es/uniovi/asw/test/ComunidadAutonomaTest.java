@@ -18,9 +18,14 @@ public class ComunidadAutonomaTest {
 		c.setId((long)2);
 		assertEquals("2", Long.toString(c.getId()));
 		
-		boolean guardado= Factories.persistence.createComunidadAutonomaDao().save(c);
+		c= new ComunidadAutonoma();
+		c.setNombre("Principado de Asturias");
+		boolean guardado= Factories.service.createComunidadAutonomaService().save(c);
 		assertEquals(true,guardado);
-		assertEquals(c,Factories.persistence.createComunidadAutonomaDao().findById((long)2));
+		
+		ComunidadAutonoma aux = Factories.service.createComunidadAutonomaService().findById((long)1);
+		
+		assertEquals("Principado de Asturias",aux.getNombre());
 		
 		
 	}

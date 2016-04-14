@@ -29,8 +29,8 @@ public class Jdbc {
 	/*
 	 * Configuration for Hsqldb
 	 */
-	private static final String QUERIES_PROPERTIES_FILE = "sql.properties";
-	private static final String DATABASE_PROPERTIES_FILE = "h2.properties";
+	private static final String QUERIES_PROPERTIES_FILE = "./src/main/java/sql.properties";
+	private static final String DATABASE_PROPERTIES_FILE = "./src/main/java/h2.properties";
 	//private static final String DATABASE_PROPERTIES_FILE = "jdbc.properties";
 	//private static final String DATABASE_PROPERTIES_FILE = "mysql.properties";
 

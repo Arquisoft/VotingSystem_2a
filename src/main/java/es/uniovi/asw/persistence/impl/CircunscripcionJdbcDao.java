@@ -12,7 +12,7 @@ import es.uniovi.asw.persistence.Jdbc;
 
 public class CircunscripcionJdbcDao implements CircunscripcionDao {
 
-	private Properties QUERIES = Jdbc.getQueries();
+	private Properties QUERIES=Jdbc.getQueries();
 
 	@Override
 	public Circunscripcion findById(Long id) {
@@ -21,8 +21,9 @@ public class CircunscripcionJdbcDao implements CircunscripcionDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Circunscripcion circ= null;
-		
+
 		try {
+			
 			con = Jdbc.getConnection();
 
 			ps = con.prepareStatement(QUERIES.getProperty("FIND_CIRC"));
@@ -51,7 +52,7 @@ public class CircunscripcionJdbcDao implements CircunscripcionDao {
 		
 		Connection con = null;
 		PreparedStatement ps = null;
-		
+
 		try {
 			con = Jdbc.getConnection();
 
@@ -59,7 +60,7 @@ public class CircunscripcionJdbcDao implements CircunscripcionDao {
 			ps.setString(1, circ.getNombre());
 			
 			int num=ps.executeUpdate();
-			
+
 			return (num>0);
 			
 		} catch (SQLException e) {
@@ -70,5 +71,5 @@ public class CircunscripcionJdbcDao implements CircunscripcionDao {
 		return false;
 		
 	}
-
+	
 }

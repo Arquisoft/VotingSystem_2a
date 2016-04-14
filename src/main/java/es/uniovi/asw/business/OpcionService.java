@@ -8,4 +8,5 @@ public interface OpcionService {
 	
 	List<Opcion> listadoOpciones(Long idVotacion);
 	Opcion findById(Long idOpcion);
+	boolean save(Opcion op);
 }
