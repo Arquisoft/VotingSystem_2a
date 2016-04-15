@@ -144,8 +144,15 @@ public class Jdbc {
 			IllegalAccessException, SQLException {
 
 		List<String> listaQueries= new ArrayList<String>();
-		
-		
+
+		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_VOTANTES"));
+		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_COLELECTORAL"));
+		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_VOTACIONESS"));
+		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_VOTOS"));
+		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_HANVOTADO"));
+		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_OPCIONES"));
+		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_COMUNIDADESAUTONOMAS"));
+		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_CIRCUNSCRIPCIONES"));
 				
 		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_VOTANTES"));
 		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_COL_ELECT"));
@@ -155,15 +162,6 @@ public class Jdbc {
 		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_OPCIONES"));
 		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_COM_AUTONOMAS"));
 		listaQueries.add(QUERIES.getProperty("CREAR_TABLA_CIRCUNSCRIPCIONES"));
-		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_VOTANTES"));
-
-		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_VOTANTES"));
-		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_COLELECTORAL"));
-		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_VOTACIONESS"));
-		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_VOTOS"));
-		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_OPCIONES"));
-		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_COMUNIDADESAUTONOMAS"));
-		listaQueries.add(QUERIES.getProperty("VACIAR_TABLA_CIRCUNSCRIPCIONES"));
 		
 		for(String query: listaQueries){
 		
