@@ -25,25 +25,25 @@ public class OpcionTest {
 		o.setDescripcion("Rajoy");
 		assertEquals("Rajoy", o.getDescripcion());
 		
-		o= new Opcion();
-		o.setIdVotacion((long)1);
-		o.setDescripcion("PP");
+		Opcion a= new Opcion();
+		a.setIdVotacion((long)1);
+		a.setDescripcion("PP");
 		
-		boolean guardado= Factories.service.createOpcionService().save(o);
-		
+		boolean guardado= Factories.service.createOpcionService().save(a);
 		assertEquals(true,guardado);
 		
-		o= new Opcion();
-		o.setIdVotacion((long)1);
-		o.setDescripcion("PSOE");
+		Opcion b= new Opcion();
+		b.setIdVotacion((long)1);
+		b.setDescripcion("PSOE");
 		
-		guardado= Factories.service.createOpcionService().save(o);
+		guardado= Factories.service.createOpcionService().save(b);
 		
 		assertEquals(true,guardado);
 		
 		Opcion aux=Factories.service.createOpcionService().findById((long)1);
 		
 		assertEquals("PP",aux.getDescripcion());
+		
 		
 		assertEquals(2,Factories.service.createOpcionService().listadoOpciones((long)1).size());
 

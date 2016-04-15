@@ -5,6 +5,7 @@ import java.util.List;
 import es.uniovi.asw.business.OpcionService;
 import es.uniovi.asw.business.impl.classes.FindOpcion;
 import es.uniovi.asw.business.impl.classes.SaveOpc;
+import es.uniovi.asw.business.impl.classes.ListadoOpciones;
 import es.uniovi.asw.model.Opcion;
 
 public class SimpleOpcionService implements OpcionService {
@@ -19,7 +20,7 @@ public class SimpleOpcionService implements OpcionService {
 	@Override
 	public List<Opcion> listadoOpciones(Long idVotacion) {
 
-		return null;
+		return new ListadoOpciones().listadoVotacion(idVotacion);
 		
 	}
 
