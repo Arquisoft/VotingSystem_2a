@@ -60,6 +60,13 @@ public class UsuarioTest {
 		assertEquals("Dario",aux.getNombre());
 		assertEquals(null,Factories.service.createUsuarioService().findByNif("11111111F"));
 		assertEquals(null,Factories.service.createUsuarioService().findByNif(null));
+		u.setPassword("Dv5tsvbPa9");
+		assertEquals("Usuario [nombre=Dario, email=user2@email.com, NIF=71900054F, password=Dv5tsvbPa9, codColElectoral=1, id=0, login=Dario]", u.toString());
+		Usuario usuarioDePrueba = new Usuario("H", "user2@email.com", "71900054F", 1);
+		assertEquals("H",usuarioDePrueba.getNombre());
+		assertEquals("user2@email.com",usuarioDePrueba.getEmail());
+		assertEquals("71900054F",usuarioDePrueba.getNIF());
+		assertEquals(1,usuarioDePrueba.getCodColElectoral());
 	}
 
 }
