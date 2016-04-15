@@ -35,6 +35,16 @@ public class VotoTest {
 		
 		Voto aux=Factories.service.createVotoService().findById((long)1, (long)1);
 		assertEquals(2,(long)aux.getTotVotos());
+		c.setTotVotos(c.getTotVotos()+1);
+		
+		Factories.service.createVotoService().update(c);
+		aux = Factories.service.createVotoService().findById((long) 1, (long) 1);
+		assertEquals(3, (long) aux.getTotVotos());
+
+		assertEquals(true, Factories.persistence.createVotoDao().incrementarVoto(aux));
+		aux = Factories.service.createVotoService().findById((long) 1, (long) 1);
+
+		assertEquals(4, (long) aux.getTotVotos());
 		
 	}
 

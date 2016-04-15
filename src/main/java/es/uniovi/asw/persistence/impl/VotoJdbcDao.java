@@ -54,6 +54,35 @@ public class VotoJdbcDao implements VotoDao {
 			con = Jdbc.getConnection();
 			ps = con.prepareStatement(QUERIES.getProperty("UPDATE_VOTE"));
 
+			ps.setLong(1, voto.getTotVotos());
+			ps.setLong(2, voto.getIdOpcion());
+			ps.setLong(3, voto.getIdColElect());
+
+			int num=ps.executeUpdate();
+
+			return (num>0);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			Jdbc.close(con, ps);
+		}
+		return false;
+
+	}
+	
+	@Override
+	public boolean incrementarVoto(Voto voto) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+
+			con = Jdbc.getConnection();
+			ps = con.prepareStatement(QUERIES.getProperty("UPDATE_VOTE"));
+
 			ps.setLong(1, voto.getTotVotos()+1);
 			ps.setLong(2, voto.getIdOpcion());
 			ps.setLong(3, voto.getIdColElect());

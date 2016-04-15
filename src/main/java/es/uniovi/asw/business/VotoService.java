@@ -7,5 +7,6 @@ public interface VotoService {
 	Voto findById(Long idOpcion,Long idColegioElectoral);
 	boolean saveVoto(Voto voto);
 	boolean update (Voto voto);
+	boolean incrementarVoto (Voto voto);
 	
 }
