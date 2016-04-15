@@ -45,7 +45,7 @@ public class OpcionTest {
 		
 		assertEquals("PP",aux.getDescripcion());
 		
-		//assertEquals(2,Factories.service.createOpcionService().listadoOpciones((long)1));
+		assertEquals(2,Factories.service.createOpcionService().listadoOpciones((long)1).size());
 
 		
 	}
