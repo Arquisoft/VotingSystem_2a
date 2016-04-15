@@ -59,6 +59,7 @@ public class UsuarioTest {
 		
 		assertEquals("Dario",aux.getNombre());
 		assertEquals(null,Factories.service.createUsuarioService().findByNif("11111111F"));
+		assertEquals(null,Factories.service.createUsuarioService().findByNif(null));
 	}
 
 }

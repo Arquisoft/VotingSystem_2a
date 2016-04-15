@@ -40,6 +40,7 @@ public class ColegioElectoralTest {
 		assertEquals(10, (long)aux.getIdCircunscripcion());
 		assertEquals(13, (long)aux.getIdComAutonoma());
 		assertEquals(null,Factories.service.createColegioElectoralService().findById((long)1232525235));
+		assertEquals(null,Factories.service.createColegioElectoralService().findById(null));
 		//assertEquals(null,Factories.service.createColegioElectoralService().update(null));
 		
 	}

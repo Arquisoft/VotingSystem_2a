@@ -47,7 +47,7 @@ public class OpcionTest {
 		
 		assertEquals(2,Factories.service.createOpcionService().listadoOpciones((long)1).size());
 		assertEquals(null,Factories.service.createOpcionService().findById((long)1232525235));
-		
+		assertEquals(null,Factories.service.createOpcionService().findById(null));
 	}
 
 }
