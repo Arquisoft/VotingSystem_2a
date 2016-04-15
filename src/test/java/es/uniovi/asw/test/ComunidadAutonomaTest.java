@@ -26,6 +26,7 @@ public class ComunidadAutonomaTest {
 		ComunidadAutonoma aux = Factories.service.createComunidadAutonomaService().findById((long)1);
 		
 		assertEquals("Principado de Asturias",aux.getNombre());
+		assertEquals(null,Factories.service.createComunidadAutonomaService().findById((long)1232525235));
 		
 		
 	}

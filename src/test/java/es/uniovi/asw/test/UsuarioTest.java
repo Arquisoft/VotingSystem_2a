@@ -52,11 +52,13 @@ public class UsuarioTest {
 		boolean guardado= Factories.service.createUsuarioService().saveUser(u);
 		assertEquals(true,Factories.service.createUsuarioService().puedeVotar(u));
 		assertEquals(true, guardado);
+		assertEquals(false,Factories.service.createUsuarioService().saveUser(null));
+		assertEquals(false,Factories.service.createUsuarioService().puedeVotar(null));
 		assertEquals(1,Factories.service.createUsuarioService().listaUsuarios().size());
 		Usuario aux =  Factories.service.createUsuarioService().findByNif("71900054F");
 		
 		assertEquals("Dario",aux.getNombre());
-		
+		assertEquals(null,Factories.service.createUsuarioService().findByNif("11111111F"));
 	}
 
 }

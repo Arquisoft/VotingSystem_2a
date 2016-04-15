@@ -45,6 +45,9 @@ public class VotoTest {
 		aux = Factories.service.createVotoService().findById((long) 1, (long) 1);
 
 		assertEquals(4, (long) aux.getTotVotos());
+		assertEquals(null,Factories.service.createVotoService().findById((long)1232525235, null));
+		//assertEquals(null,Factories.service.createVotoService().update(null));
+		//assertEquals(null,Factories.service.createVotoService().saveVoto(null));
 		
 	}
 

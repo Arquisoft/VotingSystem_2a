@@ -31,6 +31,8 @@ public class VotacionTest {
 		Factories.service.createVotacionService().getTipoVotacion((long)1);
 		
 		//assertEquals("Votacion al Congreso",aux.getDefinicion());
+		assertEquals(null,Factories.service.createVotacionService().getTipoVotacion((long)1232525235));
+
 		
 	}
 
