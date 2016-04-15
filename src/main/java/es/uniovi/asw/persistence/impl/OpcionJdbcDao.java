@@ -85,8 +85,8 @@ public class OpcionJdbcDao implements OpcionDao {
 		try {
 			con=Jdbc.getConnection();
 			
-			con=Jdbc.getConnection();
 			ps=con.prepareStatement(QUERIES.getProperty("FIND_OPCIONES_VOTACION"));
+			ps.setLong(1, idVotacion);
 			rs=ps.executeQuery();
 			
 			Opcion opc=null;
