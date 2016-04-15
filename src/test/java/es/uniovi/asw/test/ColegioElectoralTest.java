@@ -32,7 +32,11 @@ public class ColegioElectoralTest {
 		assertEquals(true, guardado);
 		
 		ColegioElectoral aux=Factories.service.createColegioElectoralService().findById((long)1);
+		aux.setVotoFisico(true);
+		assertEquals(true, Factories.service.createColegioElectoralService().update(aux));
 		
+		aux=Factories.service.createColegioElectoralService().findById((long)1);
+		assertTrue(aux.isVotoFisico());
 		assertEquals(10, (long)aux.getIdCircunscripcion());
 		assertEquals(13, (long)aux.getIdComAutonoma());
 		

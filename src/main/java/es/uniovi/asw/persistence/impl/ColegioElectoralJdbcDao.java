@@ -83,7 +83,8 @@ public class ColegioElectoralJdbcDao implements ColegioElectoralDao {
 			con = Jdbc.getConnection();
 			
 			ps = con.prepareStatement(QUERIES.getProperty("UPDATE_COL"));
-			ps.setBoolean(3, col.isVotoFisico());
+			ps.setBoolean(1, col.isVotoFisico());
+			ps.setLong(2,col.getId());
 			
 			int num=ps.executeUpdate();
 			
