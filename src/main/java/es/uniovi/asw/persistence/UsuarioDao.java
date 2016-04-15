@@ -18,12 +18,7 @@ public interface UsuarioDao {
 	
 	boolean save(Usuario a) ;
 		
-	boolean delete(String login) ;
-	
 	Usuario findByNIF(String login) ;
 	
-	boolean deleteUsuarios();
-	
-	void reiniciaID();
 
 }
