@@ -202,7 +202,7 @@ public class UsuarioJdbcDao implements UsuarioDao {
 
 				user = new Usuario(nombre, email, nif,
 						password, CodColegio, id, login);
-
+				user.setVotoElectronico(rs.getBoolean("VOTOELECTRONICO"));
 			}
 
 			return user;

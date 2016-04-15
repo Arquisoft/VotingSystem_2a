@@ -45,9 +45,12 @@ public class UsuarioTest {
 		u.setCodColElectoral(1);
 		u.setEmail("user2@email.com");
 		u.setVotoElectronico(true);
+		
 		u.setNIF("71900054F");
 		
+		
 		boolean guardado= Factories.service.createUsuarioService().saveUser(u);
+		assertEquals(true,Factories.service.createUsuarioService().puedeVotar(u));
 		assertEquals(true, guardado);
 		assertEquals(1,Factories.service.createUsuarioService().listaUsuarios().size());
 		Usuario aux =  Factories.service.createUsuarioService().findByNif("71900054F");
