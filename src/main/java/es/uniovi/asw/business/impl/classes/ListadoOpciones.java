@@ -5,7 +5,7 @@ import java.util.List;
 import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Opcion;
 
-public class listadoOpciones {
+public class ListadoOpciones {
 	
 	public List<Opcion> listadoVotacion(Long idVotacion){
 		
