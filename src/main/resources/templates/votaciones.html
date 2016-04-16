@@ -13,9 +13,11 @@
 			<hr/>
 			
 			<form>
-					<div th:each="votaciones: ${votaciones}"style="float: right; width: 50%;">
-						<p th:text="'' + ${votaciones}" />
-					<h2>Numero de votos por colegio</h2>
+					<div th:each="votacion: ${votaciones}" align="center">
+
+						<h2 th:text=" ${votacion.definicion}"></h2>
+						<h2>Numero de votos por colegio</h2>
+						
 					</div>
 				
 				<a th:href="@{/votacion}">Ir Votar</a>

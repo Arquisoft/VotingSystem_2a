@@ -8,10 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import es.uniovi.asw.model.Votacion;
-import org.springframework.web.servlet.view.RedirectView;
 
 
 @Controller
@@ -27,9 +25,9 @@ public class Main {
 		
 		List <Votacion> listaVotaciones=new ArrayList<Votacion>();
 		
-		listaVotaciones.add(new Votacion((long)1, "PP"));
-		listaVotaciones.add(new Votacion((long)2, "PSOE"));
-		listaVotaciones.add(new Votacion((long)3, "Ciudadanos"));
+		listaVotaciones.add(new Votacion((long)1, "Elecciones al Senado"));
+		listaVotaciones.add(new Votacion((long)2, "Elecciones al Congreso"));
+		listaVotaciones.add(new Votacion((long)3, "Referendum"));
 		
 		//listaVotaciones= Factories.service.createVotacionService().findAll();
 		model.addAttribute("votaciones", listaVotaciones);
