@@ -49,13 +49,4 @@ public class Main {
 
 	}
 	
-//	@RequestMapping(method = RequestMethod.GET)
-//	public RedirectView localRedirect() {
-//	    RedirectView redirectView = new RedirectView();
-//	    
-//		redirectView.setUrl("votaciones.xhtml");
-//
-//	    return redirectView;
-//	}
-
 }
