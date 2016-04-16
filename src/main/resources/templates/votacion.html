@@ -12,6 +12,13 @@
 		<hr/>
 		
 		<form>
+		
+			<div th:each="opcion: ${opciones}" align="center">
+						<h2>Candidato</h2>
+						<h2 th:text=" ${opcion.descripcion}"></h2>
+					
+						
+					</div>
 			<a th:href="@{/votaciones}">Volver</a>
 		</form>
 		
