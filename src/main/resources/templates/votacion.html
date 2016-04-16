@@ -11,5 +11,16 @@
 		<div class="header" th:fragment="cabecera">
 			<p>Votacion</p>
 		</div>
+		<form>
+		<select name="Partidos"
+				onchange="document.getElementById('selected_text2').value=this.options[this.selectedIndex].text">
+				<div th:each="c: ${partidos}">
+
+					<option th:value="${c}"><p th:text="'' + ${c}" />
+					</option>
+
+				</div>
+			</select>
+		</form>
 	</body>
 </html>

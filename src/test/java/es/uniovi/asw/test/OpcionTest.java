@@ -30,7 +30,9 @@ public class OpcionTest {
 		a.setDescripcion("PP");
 		
 		boolean guardado= Factories.service.createOpcionService().save(a);
+		boolean guardadoDoble= Factories.service.createOpcionService().save(a);
 		assertEquals(true,guardado);
+		assertFalse(guardadoDoble);
 		
 		Opcion b= new Opcion();
 		b.setIdVotacion((long)1);
@@ -46,7 +48,9 @@ public class OpcionTest {
 		
 		
 		assertEquals(2,Factories.service.createOpcionService().listadoOpciones((long)1).size());
-		
+		assertEquals(null,Factories.service.createOpcionService().findById((long)1232525235));
+		assertEquals(null,Factories.service.createOpcionService().findById(null));
+		assertEquals(null,Factories.service.createOpcionService().listadoOpciones(null));
 	}
 
 }

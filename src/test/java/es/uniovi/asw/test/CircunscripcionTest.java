@@ -26,6 +26,8 @@ public class CircunscripcionTest {
 				//Factories.persistence.createCircunscripcionDao().save(t);
 		
 		assertEquals(true, guardado);
+		assertEquals(null,Factories.service.createCircunscripcionService().findById((long)1232525235));
+		assertEquals(null,Factories.service.createCircunscripcionService().findById(null));
 		Circunscripcion aux = Factories.service.createCircunscripcionService().findById((long)1);
 		//System.out.println(aux.getNombre());
 		assertEquals(t.getNombre(),aux.getNombre());

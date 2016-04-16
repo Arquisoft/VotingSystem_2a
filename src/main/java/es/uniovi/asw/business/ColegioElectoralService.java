@@ -8,4 +8,6 @@ public interface ColegioElectoralService {
 
 	boolean save(ColegioElectoral col);
 	
+	boolean update(ColegioElectoral colegioElectoral);
+	
 }

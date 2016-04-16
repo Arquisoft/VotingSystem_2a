@@ -9,8 +9,8 @@ public class SaveUser {
 		
 		if(usuario != null){
 			
-			Factories.persistence.createUsuarioDao().save(usuario);
-			return true;
+			
+			return Factories.persistence.createUsuarioDao().save(usuario);
 				
 		}
 		return false;

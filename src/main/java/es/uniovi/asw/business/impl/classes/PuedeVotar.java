@@ -9,8 +9,8 @@ public class PuedeVotar {
 		
 		if(usuario!=null){
 			
-				usuario = Factories.service.createUsuarioService().
-						findByNif(usuario.getNIF());
+				usuario = Factories.persistence.createUsuarioDao().
+						findByNIF(usuario.getNIF());
 				return usuario.isVotoElectronico();
 					
 			

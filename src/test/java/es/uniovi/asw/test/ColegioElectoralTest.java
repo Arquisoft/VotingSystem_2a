@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.ColegioElectoral;
+import es.uniovi.asw.model.Usuario;
 
 public class ColegioElectoralTest {
 
@@ -30,11 +31,20 @@ public class ColegioElectoralTest {
 		c2.setIdComAutonoma((long)13);
 		boolean guardado= Factories.service.createColegioElectoralService().save(c2);
 		assertEquals(true, guardado);
+		boolean guardadoDoble= Factories.service.createColegioElectoralService().save(c2);
+		assertFalse(guardadoDoble);
 		
 		ColegioElectoral aux=Factories.service.createColegioElectoralService().findById((long)1);
+		aux.setVotoFisico(true);
+		assertEquals(true, Factories.service.createColegioElectoralService().update(aux));
 		
+		aux=Factories.service.createColegioElectoralService().findById((long)1);
+		assertTrue(aux.isVotoFisico());
 		assertEquals(10, (long)aux.getIdCircunscripcion());
 		assertEquals(13, (long)aux.getIdComAutonoma());
+		assertEquals(null,Factories.service.createColegioElectoralService().findById((long)1232525235));
+		assertEquals(null,Factories.service.createColegioElectoralService().findById(null));
+		assertEquals(false,Factories.service.createColegioElectoralService().update(null));
 		
 	}
 

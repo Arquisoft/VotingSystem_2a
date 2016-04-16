@@ -84,7 +84,7 @@ public class UsuarioJdbcDao implements UsuarioDao {
 		if (findByNIF(user.getNIF()) == null) {
 
 			try {
-
+				
 				con = Jdbc.getConnection();
 
 				ps = con.prepareStatement(QUERIES.getProperty("SAVE_SQL"));
@@ -97,11 +97,8 @@ public class UsuarioJdbcDao implements UsuarioDao {
 				ps.setBoolean(7, user.isVotoElectronico());
 				
 				rows = ps.executeUpdate();
-				if (rows != 1) {
-					System.out.println("User "
-							+user.getNombre()+" already exist");
-					return false;
-				}
+				
+			
 
 				return true;
 
@@ -115,56 +112,14 @@ public class UsuarioJdbcDao implements UsuarioDao {
 				Jdbc.close(con);
 
 			}
-
+			
 		}
 
 		return false;
 
 	}
 	
-	/**
-	 * Metodo para eliminar un usuario de la bd
-	 * 
-	 * @param nif
-	 *            numeor del dni del usuario a borrar
-	 * @return true si el usuario ha sido eliminado de la bd, false en caso
-	 *         contrario
-	 */
-	@Override
-	public boolean delete(String nif) {
-
-		Connection con = null;
-
-		PreparedStatement ps = null;
-
-		try {
-
-			con = Jdbc.getConnection();
-			ps = con.prepareStatement(QUERIES.getProperty("DELETE_USER"));
-			ps.setString(1, nif);
-
-			int row = ps.executeUpdate();
-
-			if (row >= 1) {
-
-				return true;
-
-			}
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-
-		} finally {
-
-			Jdbc.close(ps);
-			Jdbc.close(con);
-
-		}
-
-		return false;
-
-	}
+	
 
 	/**
 	 * Metodo pra buscar usuario a partir de su nif
@@ -203,6 +158,7 @@ public class UsuarioJdbcDao implements UsuarioDao {
 				user = new Usuario(nombre, email, nif,
 						password, CodColegio, id, login);
 				
+				user.setVotoElectronico(rs.getBoolean("VOTOELECTRONICO"));
 				
 			}
 
@@ -223,69 +179,6 @@ public class UsuarioJdbcDao implements UsuarioDao {
 
 	}
 
-	/**
-	 * Metodo para vaciar la base de datos
-	 * 
-	 * @return true si se elimino todo correctamente, false en caso contrario
-	 */
-	@Override
-	public boolean deleteUsuarios() {
 
-		PreparedStatement ps = null;
-		Connection con = null;
-
-		try {
-
-			con = Jdbc.getConnection();
-			ps = con.prepareStatement(QUERIES.getProperty("DELETE_ALL"));
-
-			ps.executeUpdate();
-
-			return true;
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-
-		} finally {
-
-			Jdbc.close(ps);
-			Jdbc.close(con);
-
-		}
-
-		return false;
-
-	}
-
-	/**
-	 * Metodo para reiniciar el contador del id en caso de que se borren todos
-	 * los usuarios
-	 */
-	@Override
-	public void reiniciaID() {
-
-		PreparedStatement ps = null;
-		Connection con = null;
-
-		try {
-
-			con = Jdbc.getConnection();
-			ps = con.prepareStatement(QUERIES.getProperty("RESET_ID"));
-
-			ps.executeUpdate();
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-
-		} finally {
-
-			Jdbc.close(ps);
-			Jdbc.close(con);
-
-		}
-
-	}
 
 }

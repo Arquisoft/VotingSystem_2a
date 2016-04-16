@@ -7,8 +7,8 @@ public class UpdateVoto {
 	
 	public boolean update(Voto voto){
 		if(voto != null){
-			Factories.persistence.createVotoDao().update(voto);
-			return true;
+			
+			return Factories.persistence.createVotoDao().update(voto);
 			
 		}
 			return false;	

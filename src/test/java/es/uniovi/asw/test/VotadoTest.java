@@ -32,6 +32,9 @@ public class VotadoTest {
 		assertEquals(false,haVotado);
 		haVotado = Factories.service.createVotadoService().haVotado((long)2, (long)1);
 		assertEquals(true,haVotado);
+		assertEquals(false,Factories.service.createVotadoService().votado(null));
+		//assertEquals(false,Factories.service.createVotadoService().haVotado(null, null));
+		
 	}
 
 }
