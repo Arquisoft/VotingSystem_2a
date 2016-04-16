@@ -202,7 +202,8 @@ public class UsuarioJdbcDao implements UsuarioDao {
 
 				user = new Usuario(nombre, email, nif,
 						password, CodColegio, id, login);
-
+				
+				
 			}
 
 			return user;
