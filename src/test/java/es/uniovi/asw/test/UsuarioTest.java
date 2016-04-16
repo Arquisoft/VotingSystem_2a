@@ -4,11 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.sun.jna.platform.win32.Netapi32Util.User;
-
 import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Usuario;
-import junit.framework.AssertionFailedError;
 
 public class UsuarioTest {
 

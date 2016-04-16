@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.ColegioElectoral;
-import es.uniovi.asw.model.Usuario;
 
 public class ColegioElectoralTest {
 
