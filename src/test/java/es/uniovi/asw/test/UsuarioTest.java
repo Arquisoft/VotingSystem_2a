@@ -14,6 +14,7 @@ public class UsuarioTest {
 
 	@Test
 	public void test() {
+		
 		//Usuario u = new Usuario(nombre, email, NIF, password, codColElectoral, id, login);
 		Usuario u = new Usuario("Victor", "user1@email.com", "71778298J", "a", 1, 1, "Victor");
 		assertEquals("Victor", u.getNombre());
@@ -76,15 +77,17 @@ public class UsuarioTest {
 		try{
 			Usuario user = new Usuario();
 			user.setEmail("wolololo");	
-		}catch(IllegalArgumentException e){	
-			return;
+			
+		}catch(IllegalArgumentException e){		
 		}
+
 		try{
 			Usuario user = new Usuario();
-			user.setNIF("111241412412123412412");	
+			user.setNIF("1111111");
 		}catch(IllegalArgumentException e){	
 			return;
 		}
+		
 	}
 
 }
