@@ -43,13 +43,47 @@ public class ColegioElectoralJdbcDao implements ColegioElectoralDao {
 
 		return col;
 	}
+	
+	private boolean comprobarColegioElectoral(ColegioElectoral colegio){
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			con = Jdbc.getConnection();
+			
+			ps = con.prepareStatement(QUERIES.getProperty("EXISTE_COL"));
+			ps.setLong(1, colegio.getIdCircunscripcion());
+			ps.setLong(2, colegio.getIdComAutonoma());
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				
 
+				return true;
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Jdbc.close(rs,ps,con);
+		}
+		return false;
+	
+		
+	}
+	
 	@Override
 	public boolean save(ColegioElectoral col) {
 		
 			Connection con = null;
 			PreparedStatement ps = null;
 			
+			
+			if(!comprobarColegioElectoral(col)){
 			try {
 				
 				con = Jdbc.getConnection();
@@ -66,6 +100,7 @@ public class ColegioElectoralJdbcDao implements ColegioElectoralDao {
 				e.printStackTrace();
 			}finally {
 				Jdbc.close(con, ps);
+			}
 			}
 			return false;
 		

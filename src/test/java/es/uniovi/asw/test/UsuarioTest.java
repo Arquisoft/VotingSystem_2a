@@ -4,8 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.sun.jna.platform.win32.Netapi32Util.User;
+
 import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Usuario;
+import junit.framework.AssertionFailedError;
 
 public class UsuarioTest {
 
@@ -69,6 +72,19 @@ public class UsuarioTest {
 		assertEquals("user2@email.com",usuarioDePrueba.getEmail());
 		assertEquals("71900054F",usuarioDePrueba.getNIF());
 		assertEquals(1,usuarioDePrueba.getCodColElectoral());
+		
+		try{
+			Usuario user = new Usuario();
+			user.setEmail("wolololo");	
+		}catch(IllegalArgumentException e){	
+			return;
+		}
+		try{
+			Usuario user = new Usuario();
+			user.setNIF("111241412412123412412");	
+		}catch(IllegalArgumentException e){	
+			return;
+		}
 	}
 
 }

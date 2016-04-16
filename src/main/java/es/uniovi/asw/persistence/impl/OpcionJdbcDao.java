@@ -69,7 +69,8 @@ public class OpcionJdbcDao implements OpcionDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Jdbc.close(con, ps);
+
+			Jdbc.close(rs, ps, con);
 		}
 
 		return false;
@@ -99,6 +100,7 @@ public class OpcionJdbcDao implements OpcionDao {
 				e.printStackTrace();
 			} finally {
 				Jdbc.close(con, ps);
+				
 			}
 		}
 		return false;

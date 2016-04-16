@@ -30,6 +30,8 @@ public class ColegioElectoralTest {
 		c2.setIdComAutonoma((long)13);
 		boolean guardado= Factories.service.createColegioElectoralService().save(c2);
 		assertEquals(true, guardado);
+		boolean guardadoDoble= Factories.service.createColegioElectoralService().save(c2);
+		assertFalse(guardadoDoble);
 		
 		ColegioElectoral aux=Factories.service.createColegioElectoralService().findById((long)1);
 		aux.setVotoFisico(true);
