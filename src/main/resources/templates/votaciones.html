@@ -12,15 +12,13 @@
 			<h2>Votaciones</h2>
 			<hr/>
 			
-			<form>
+			<form th:action="@{/votacion}" method="Post">
 					<div th:each="votacion: ${votaciones}" align="center">
-
-						<h2 th:text=" ${votacion.definicion}"></h2>
-						<h2>Numero de votos por colegio</h2>
-						
+						<input type="radio" name="${votacion.definicion}" value="'${votacion.id}'" th:text="${votacion.definicion}"/> 
 					</div>
 				
-				<a th:href="@{/votacion}">Ir Votar</a>
+				<input type="submit" name="verVotacion" value="Ver Votacion" />
+				<!--  <a th:href="@{/votacion}">Ir Votar</a> -->
 				
 			</form>
 						
