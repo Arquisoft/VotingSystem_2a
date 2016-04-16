@@ -8,11 +8,20 @@
 		          rel="stylesheet" />
 	</head>
 	<body>
-		<div class="header" th:fragment="cabecera">
-			<p>Votaciones</p>
+		<div class="header" th:fragment="cabecera" align="center">
+			<h2>Votaciones</h2>
+			<hr/>
 			
-			
-			
+			<form>
+					<div th:each="votaciones: ${votaciones}"style="float: right; width: 50%;">
+						<p th:text="'' + ${votaciones}" />
+					<h2>Numero de votos por colegio</h2>
+					</div>
+				
+				<a th:href="@{/votacion}">Ir Votar</a>
+				
+			</form>
+						
 		</div>
 	</body>
 </html>

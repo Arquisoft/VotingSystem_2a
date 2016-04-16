@@ -1,26 +1,21 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-	<head th:fragment="head">
-		<meta charset="UTF-8" />
-		<link href="../static/css/voting.css"
-		          th:href="@{/css/voting.css}"
-		          rel="stylesheet" />
-	</head>
-	<body>
-		<div class="header" th:fragment="cabecera">
-			<p>Votacion</p>
-		</div>
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<link href="../static/css/voting.css" th:href="@{/css/voting.css}"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="header" th:fragment="cabecera" align="center">
+		<h2>Votacion</h2>
+		<hr/>
+		
 		<form>
-		<select name="Partidos"
-				onchange="document.getElementById('selected_text2').value=this.options[this.selectedIndex].text">
-				<div th:each="c: ${partidos}">
-
-					<option th:value="${c}"><p th:text="'' + ${c}" />
-					</option>
-
-				</div>
-			</select>
+			<a th:href="@{/votaciones}">Volver</a>
 		</form>
-	</body>
+		
+	</div>
+	
+</body>
 </html>
