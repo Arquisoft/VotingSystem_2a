@@ -97,10 +97,8 @@ public class UsuarioJdbcDao implements UsuarioDao {
 				ps.setBoolean(7, user.isVotoElectronico());
 				
 				rows = ps.executeUpdate();
-				
-			
 
-				return true;
+				return (rows>0);
 
 			} catch (SQLException e) {
 
