@@ -26,6 +26,7 @@ public class VotacionTest {
 		v.setDefinicion("Votacion al Congreso");
 		
 		boolean guardado=Factories.service.createVotacionService().save(v);
+		assertEquals(1,Factories.service.createVotacionService().listadoVotaciones().size());
 		
 		assertTrue(guardado);
 		Factories.service.createVotacionService().getTipoVotacion((long)1);

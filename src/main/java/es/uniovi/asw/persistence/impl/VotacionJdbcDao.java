@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import es.uniovi.asw.model.Votacion;
 import es.uniovi.asw.persistence.Jdbc;
@@ -51,9 +53,7 @@ public class VotacionJdbcDao implements VotacionDao {
 			con=Jdbc.getConnection();
 			ps=con.prepareStatement(QUERIES.getProperty("FIND_VOTACION"));
 			ps.setLong(1, id);
-			//System.out.println(QUERIES.getProperty("FIND_VOTACION"));
 			rs=ps.executeQuery();
-			//System.out.println(rs);
 			if(rs.next()){
 
 				vot=new Votacion(id, rs.getString("DEFINICION"));
@@ -69,6 +69,30 @@ public class VotacionJdbcDao implements VotacionDao {
 		
 		return vot;
 		
+	}
+
+	@Override
+	public List<Votacion> findAll() {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Votacion> vot=new ArrayList<Votacion>();
+		
+		try {
+			con=Jdbc.getConnection();
+			ps=con.prepareStatement(QUERIES.getProperty("FIND_TODAS_VOTACIONES"));
+			rs=ps.executeQuery();
+			while(rs.next()){
+				vot.add(new Votacion(rs.getLong("id"), rs.getString("DEFINICION")));
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Jdbc.close(rs, ps, con);
+		}
+		
+		return vot;
+	
 	}
 
 }
