@@ -4,7 +4,6 @@ import java.util.List;
 
 import es.uniovi.asw.business.VotacionService;
 import es.uniovi.asw.business.impl.classes.GetVotacion;
-import es.uniovi.asw.business.impl.classes.ListadoOpciones;
 import es.uniovi.asw.business.impl.classes.ListadoVotaciones;
 import es.uniovi.asw.business.impl.classes.SaveVot;
 import es.uniovi.asw.model.Votacion;

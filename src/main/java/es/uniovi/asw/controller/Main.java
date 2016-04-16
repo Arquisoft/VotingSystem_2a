@@ -20,7 +20,7 @@ import es.uniovi.asw.model.Votacion;
 public class Main {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Main.class);
-	
+
 	@RequestMapping("/votaciones")
 	public ModelAndView votaciones(Model model) {
 
@@ -28,9 +28,6 @@ public class Main {
 		
 		List <Votacion> listaVotaciones=new ArrayList<Votacion>();
 	
-		
-		
-		
 		listaVotaciones.add(new Votacion((long)1, "Elecciones al Senado"));
 		listaVotaciones.add(new Votacion((long)2, "Elecciones al Congreso"));
 		listaVotaciones.add(new Votacion((long)3, "Referendum"));
@@ -46,8 +43,8 @@ public class Main {
 	
 
 	@RequestMapping("/votacion")
-	public ModelAndView opciones(Model model) {
-
+	public ModelAndView opciones(@ModelAttribute Votacion vot,Model model) {
+		
 		LOG.info("Votacion page access");
 		
 		List<Opcion>listaOpciones = new ArrayList<Opcion>();
@@ -57,6 +54,8 @@ public class Main {
 		listaOpciones.add(new Opcion((long)1 , (long)2, "Pablo Iglesias"));
 		
 		model.addAttribute("opciones", listaOpciones);
+
+		model.addAttribute("vot", vot);
 		
 		return new ModelAndView("votacion");
 		

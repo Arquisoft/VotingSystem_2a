@@ -1,27 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-	<head th:fragment="head">
-		<meta charset="UTF-8" />
-		<link href="../static/css/voting.css"
-		          th:href="@{/css/voting.css}"
-		          rel="stylesheet" />
-	</head>
-	<body>
-		<div class="header" th:fragment="cabecera" align="center">
-			<h2>Votaciones</h2>
-			<hr/>
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<link href="../static/css/voting.css" th:href="@{/css/voting.css}"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="header" th:fragment="cabecera" align="center">
+		<h2>Votaciones</h2>
+		<hr />
+
+		<form action="#" th:action="@{/votacion}" 
+		th:object="${votacion}" method="post">
+
+			<div th:each="v: ${votaciones}" align="center">
+				<input type="radio" name="${v.definicion}"
+					value="${v}" th:field="*{id}" th:text="${v.definicion}"
+					/>
+			</div>
+
+			<input type="submit" name="verVotacion" value="Ver Votacion" />
 			
-			<form th:action="@{/votacion}" method="Post">
-					<div th:each="votacion: ${votaciones}" align="center">
-						<input type="radio" name="${votacion.definicion}" value="'${votacion.id}'" th:text="${votacion.definicion}"/> 
-					</div>
-				
-				<input type="submit" name="verVotacion" value="Ver Votacion" />
-				<!--  <a th:href="@{/votacion}">Ir Votar</a> -->
-				
-			</form>
-						
-		</div>
-	</body>
+		</form>
+
+	</div>
+</body>
 </html>
