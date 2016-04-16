@@ -8,8 +8,8 @@ public class UpdateColegioElectoral {
 	
 	public boolean updateColegioElectoral(ColegioElectoral colegioElectoral){
 		if(colegioElectoral != null){
-			Factories.persistence.createColegioElectoralDao().update(colegioElectoral);
-			return true;
+		
+			return 	Factories.persistence.createColegioElectoralDao().update(colegioElectoral);
 			
 		}
 			return false;	

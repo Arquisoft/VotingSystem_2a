@@ -84,7 +84,7 @@ public class UsuarioJdbcDao implements UsuarioDao {
 		if (findByNIF(user.getNIF()) == null) {
 
 			try {
-
+				
 				con = Jdbc.getConnection();
 
 				ps = con.prepareStatement(QUERIES.getProperty("SAVE_SQL"));
@@ -97,11 +97,8 @@ public class UsuarioJdbcDao implements UsuarioDao {
 				ps.setBoolean(7, user.isVotoElectronico());
 				
 				rows = ps.executeUpdate();
-				if (rows != 1) {
-					System.out.println("User "
-							+user.getNombre()+" already exist");
-					return false;
-				}
+				
+			
 
 				return true;
 
@@ -115,7 +112,7 @@ public class UsuarioJdbcDao implements UsuarioDao {
 				Jdbc.close(con);
 
 			}
-
+			
 		}
 
 		return false;

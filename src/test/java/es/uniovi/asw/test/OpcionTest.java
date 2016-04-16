@@ -30,7 +30,9 @@ public class OpcionTest {
 		a.setDescripcion("PP");
 		
 		boolean guardado= Factories.service.createOpcionService().save(a);
+		boolean guardadoDoble= Factories.service.createOpcionService().save(a);
 		assertEquals(true,guardado);
+		assertFalse(guardadoDoble);
 		
 		Opcion b= new Opcion();
 		b.setIdVotacion((long)1);

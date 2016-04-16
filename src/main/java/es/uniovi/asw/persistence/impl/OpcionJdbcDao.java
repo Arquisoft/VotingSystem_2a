@@ -46,32 +46,63 @@ public class OpcionJdbcDao implements OpcionDao {
 		return opc;
 		
 	}
+	
+	private boolean comprobarOpcion(Opcion op) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+
+			con = Jdbc.getConnection();
+			ps = con.prepareStatement(QUERIES.getProperty("EXISTE_OPCION"));
+			ps.setLong(1, op.getIdVotacion());
+			ps.setString(2, op.getDescripcion());
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				return true;
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Jdbc.close(con, ps);
+		}
+
+		return false;
+
+	}
 
 	@Override
 	public boolean save(Opcion opcion) {
-		
+
 		Connection con = null;
 		PreparedStatement ps = null;
-		
-		try {
-			
-			con=Jdbc.getConnection();
-			ps=con.prepareStatement(QUERIES.getProperty("SAVE_OPCION"));
-			ps.setLong(1, opcion.getIdVotacion());
-			ps.setString(2, opcion.getDescripcion());
-			
-			int num=ps.executeUpdate();
-			
-			return (num>0);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			Jdbc.close(con, ps);
+
+		if (!comprobarOpcion(opcion)) {
+
+			try {
+
+				con = Jdbc.getConnection();
+				ps = con.prepareStatement(QUERIES.getProperty("SAVE_OPCION"));
+				ps.setLong(1, opcion.getIdVotacion());
+				ps.setString(2, opcion.getDescripcion());
+
+				int num = ps.executeUpdate();
+
+				return (num > 0);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				Jdbc.close(con, ps);
+			}
 		}
-		
 		return false;
-		
+
 	}
 
 	@Override
