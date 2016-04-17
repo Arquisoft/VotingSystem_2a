@@ -32,9 +32,8 @@ public class Main {
 		listaVotaciones.add(new Votacion((long)2, "Elecciones al Congreso"));
 		listaVotaciones.add(new Votacion((long)3, "Referendum"));
 		
-		
-		
 		//listaVotaciones= Factories.service.createVotacionService().findAll();
+		
 		model.addAttribute("votaciones", listaVotaciones);
 		
 		return new ModelAndView("votaciones");
