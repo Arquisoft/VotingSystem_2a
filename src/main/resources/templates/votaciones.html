@@ -13,16 +13,37 @@
 
 		<form action="#" th:action="@{/votacion}" 
 		th:object="${votacion}" method="post">
-
-			<div th:each="v: ${votaciones}" align="center">
-				<input type="radio" name="${v.definicion}"
-					value="${v}" th:text="${v.definicion}"/>
+	
+			<select name="Votaciones"
+				onchange="document.getElementById('votacionElegida').value=this.options[this.selectedIndex].text">
+	
+			<div th:each="v: ${votaciones}">
+			
+				<option th:value="${v}">
+				<p th:text="''+${v.definicion}"></p>
+				</option>
+				
 			</div>
+				
+			</select>
 
 			<input type="submit" name="verVotacion" value="Ver Votacion" />
 			
 		</form>
 
 	</div>
+	
+	<?php
+
+	if(isset($_POST['verVotacion'])){
+
+    	$makerValue = $_POST['Votaciones']; // make value
+
+   		$maker = mysql_real_escape_string($_POST['selectedVotacion']); // get the selected text
+    	echo $maker;
+
+	}
+ 	?>
+	
 </body>
 </html>
