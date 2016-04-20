@@ -28,5 +28,6 @@ public class SimpleVotacionService implements VotacionService {
 	public List<Votacion> listadoVotaciones(){
 		
 		return new ListadoVotaciones().listadoVotacion();
+		
 	}
 }

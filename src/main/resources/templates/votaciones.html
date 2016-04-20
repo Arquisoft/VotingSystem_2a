@@ -1,49 +1,57 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
 
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
 <meta charset="UTF-8" />
 <link href="../static/css/voting.css" th:href="@{/css/voting.css}"
 	rel="stylesheet" />
 </head>
 <body>
+
+	<div align="left">
+		<form>
+			<a th:href="@{/admin}">Administrar</a>
+		</form>
+	</div>
+
 	<div class="header" th:fragment="cabecera" align="center">
 		<h2>Votaciones</h2>
 		<hr />
 
-		<form action="#" th:action="@{/votacion}" 
-		th:object="${votacion}" method="post">
+		<form  th:action="@{/votacion}" 
+		th:object="${vot}" method="post">
 	
-			<select name="Votaciones"
-				onchange="document.getElementById('votacionElegida').value=this.options[this.selectedIndex].text">
+			
 	
 			<div th:each="v: ${votaciones}">
-			
-				<option th:value="${v}">
-				<p th:text="''+${v.definicion}"></p>
-				</option>
 				
+				 <input type="radio" name="votaciones"  
+				 th:text="''+${v.definicion}" 
+				 th:field="*{idVotacion}" th:value="${v.id}" 
+				 onchange="document.getElementById('selected_text2').value=this.options[this.selectedIndex].text"/>
+				  
 			</div>
-				
-			</select>
-
-			<input type="submit" name="verVotacion" value="Ver Votacion" />
 			
+			
+			
+			<input type="hidden" name="selected_text2" id="selected_text2"
+					value="" th:field="*{idVotacion}" />
+			<input type="submit" name="verVotacion" value="Ver Votacion" />
+
 		</form>
 
 	</div>
-	
 	<?php
 
-	if(isset($_POST['verVotacion'])){
+	if(isset($_POST['verVotacion']))
+	{
 
-    	$makerValue = $_POST['Votaciones']; // make value
+    	$makerValue = $_POST['votaciones']; // make value
 
-   		$maker = mysql_real_escape_string($_POST['selectedVotacion']); // get the selected text
+    	$maker = mysql_real_escape_string($_POST['selected_text2']); // get the selected text
     	echo $maker;
-
 	}
- 	?>
+	?>
 	
 </body>
 </html>

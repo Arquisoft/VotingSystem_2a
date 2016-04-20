@@ -11,8 +11,6 @@ public class ListadoVotaciones {
 		
 		return  Factories.persistence.createVotacionDao().findAll();
 		
-
-		
 	}
 
 }
