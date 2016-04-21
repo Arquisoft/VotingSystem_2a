@@ -9,13 +9,10 @@
 <body>
 
 	<div class="header" th:fragment="cabecera" align="center">
-		<h2>Ha Votado</h2>
+		<h2>Error</h2>
 	<hr />
-		<form>
-			<p>Voto emitido con exito</p>
-			<a th:href="@{/}">Volver</a>
-		</form>
+		<p>Error ya ha emitido su voto para la votacion elegida</p>
+		<a th:href="@{/irVotaciones}">Volver a Inicio</a>
 	</div>
 
 </body>
-</html>

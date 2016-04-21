@@ -43,7 +43,6 @@ public class Main {
 		precargar();
 		
 		LOG.info("Index page access");
-		//usuario= new BeanUsuarios();
 		
 		model.addAttribute("vot", usuario);
 		
@@ -55,7 +54,6 @@ public class Main {
 	public ModelAndView votaciones(BeanUsuarios usuario,Model model) {
 
 		LOG.info("Votaciones page access");
-		//System.out.println(usuario.getIdUsuario());
 		
 		user= Factories.service.createUsuarioService().findById(Integer.valueOf(usuario.getIdUsuario()));
 		
@@ -68,11 +66,29 @@ public class Main {
 		
 		List <Votacion> listaVotaciones=new ArrayList<Votacion>();
 		
-		/*
-		listaVotaciones.add(new Votacion((long)1, "Elecciones al Senado"));
-		listaVotaciones.add(new Votacion((long)2, "Elecciones al Congreso"));
-		listaVotaciones.add(new Votacion((long)3, "Referendum"));
-		*/
+		listaVotaciones= Factories.service.createVotacionService().listadoVotaciones();
+
+		model.addAttribute("votaciones", listaVotaciones);
+		model.addAttribute("vot", votaciones);
+		
+		return new ModelAndView("votaciones");
+		
+	}
+	@RequestMapping(value="/irVotaciones",method= RequestMethod.GET)
+	public ModelAndView votaciones(Model model) {
+
+		LOG.info("Votaciones page access");
+		
+		user= Factories.service.createUsuarioService().findById(Integer.valueOf(usuario.getIdUsuario()));
+		
+		if(user==null){
+			return new ModelAndView("errorInicio");//voy a error si el id de usuario no esta en la bd
+		}
+		
+		this.usuario.setIdUsuario(usuario.getIdUsuario());
+		
+		
+		List <Votacion> listaVotaciones=new ArrayList<Votacion>();
 		
 		listaVotaciones= Factories.service.createVotacionService().listadoVotaciones();
 
@@ -106,12 +122,6 @@ public class Main {
 		
 			List<Opcion>listaOpciones = new ArrayList<Opcion>();
 			
-			/*listaOpciones.add(new Opcion((long)1 , (long)2, "Mariano Rajoy"));
-			listaOpciones.add(new Opcion((long)1 , (long)2, "Albert Rivera"));
-			listaOpciones.add(new Opcion((long)1 , (long)2, "Pedro Sanchez"));
-			listaOpciones.add(new Opcion((long)1 , (long)2, "Pablo Iglesias"));
-			*/
-			
 			Factories.service.createOpcionService()
 			.listadoOpciones(Long.valueOf(votaciones.getIdVotacion()));
 			Votacion v =Factories.service.createVotacionService()
@@ -131,11 +141,9 @@ public class Main {
 				return new ModelAndView("votacion");
 				
 			}
-		
-			//System.out.println(votaciones.getIdVotacion());
-			//model.addAttribute("vot", votaciones);
 			
 			return new ModelAndView("errorEleccion");
+			
 		}
 		
 		return new ModelAndView("errorYaVotado");
@@ -163,6 +171,7 @@ public class Main {
 				v= new Voto();
 				v.setIdOpcion(op.getId());
 				v.setIdColElect((long)user.getCodColElectoral());
+				v.setTotVotos((long)1);
 				
 				Factories.service.createVotoService().saveVoto(v);
 				
@@ -172,16 +181,13 @@ public class Main {
 				
 			}
 			
-			
+			Votado votado= new Votado(idVotacon, (long)user.getId());
+			Factories.service.createVotadoService().votado(votado);
 			
 			return new ModelAndView("votar");
 			
-			
 		}
-	
-		//System.out.println(votaciones.getIdVotacion());
-		//model.addAttribute("vot", votaciones);
-		
+			
 		return new ModelAndView("errorEleccion");
 		
 	}
