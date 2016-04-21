@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Opcion;
 import es.uniovi.asw.model.Votacion;
+import es.uniovi.asw.model.Voto;
 import es.uniovi.asw.presentacion.BeanOpcion;
 import es.uniovi.asw.presentacion.BeanUsuarios;
 import es.uniovi.asw.presentacion.BeanVotacion;
@@ -92,7 +93,7 @@ public class Main {
 			
 			listaOpciones=Factories.service.createOpcionService()
 				.listadoOpciones(v.getId());
-			
+			this.votaciones.setIdVotacion(votaciones.getIdVotacion());
 			model.addAttribute("opciones", listaOpciones);
 			model.addAttribute("vot", opcion);
 			
@@ -107,19 +108,26 @@ public class Main {
 		
 	}
 	
-	@RequestMapping(value="/votar",method= RequestMethod.POST)
+	@RequestMapping(value="/guardarVoto",method= RequestMethod.POST)
 	public ModelAndView votar(BeanOpcion opcion,Model model) {
 		
 		LOG.info("Votacion page access");
 		
 		Opcion op = Factories.service.createOpcionService()
 				.findById(Long.valueOf(opcion.getIdOpcion()));
+
+		Long idVotacon = Long.valueOf(votaciones.getIdVotacion());
 		
-		
-		if(op!=null){
+		if(op!=null && op.getIdVotacion().equals(idVotacon)){
 			
 			
 			//model.addAttribute("vot", opcion);
+			Voto v = new Voto();
+			
+			v.setIdOpcion(op.getId());
+			v.setIdColElect((long)0);
+			
+			Factories.service.createVotoService().saveVoto(v);
 			
 			return new ModelAndView("votar");
 			
