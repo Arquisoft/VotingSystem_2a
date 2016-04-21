@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<link href="../static/css/voting.css" th:href="@{/css/voting.css}"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="header" th:fragment="cabecera" align="center">
+		<h2>Crear Votacion</h2>
+		<hr />
+
+		<form id="crear_votacion" 
+		th:object="${vot}" 
+		th:action="@{/irVotaciones}" 
+		method="post">
+
+			<label>Id de Usuario:</label>
+			<input id="idUser" type="text" value="" th:field="*{idUsuario}" />
+			
+			<br/>
+			
+			<input type="submit" name="crearVotacion" value="Iniciar Sesion" />
+			
+		</form>
+
+	</div>
+
+</body>
+</html>

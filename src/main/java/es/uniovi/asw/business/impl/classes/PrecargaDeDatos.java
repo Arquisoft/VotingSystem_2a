@@ -10,7 +10,7 @@ import es.uniovi.asw.model.Votacion;
 
 public class PrecargaDeDatos {
 	
-	public void Precarga(){
+	public void precarga(){
 		//Usuario u = new Usuario(nombre, email, NIF, codColElectoral)
 		//Usuario u = new Usuario(nombre, email, NIF, password, codColElectoral, id, login)
 		Usuario u = new Usuario("Victor", "user1@email.com", "71778298J", 1);

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Opcion;
+import es.uniovi.asw.model.Usuario;
 import es.uniovi.asw.model.Votacion;
 import es.uniovi.asw.model.Voto;
 import es.uniovi.asw.presentacion.BeanOpcion;
@@ -27,18 +28,41 @@ public class Main {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
-	BeanVotacion votacion= new BeanVotacion();
-	BeanUsuarios usuarios = new BeanUsuarios();
-	BeanVotaciones votaciones= new BeanVotaciones();
-	BeanOpcion opcion= new BeanOpcion();
-
+	private BeanVotacion votacion= new BeanVotacion();
+	private BeanUsuarios usuario = new BeanUsuarios();
+	private BeanVotaciones votaciones= new BeanVotaciones();
+	private BeanOpcion opcion= new BeanOpcion();
+	
+	private Usuario user;
+	
 	private boolean precargado=false;	
 	
-	@RequestMapping("/votaciones")
-	public ModelAndView votaciones(Model model) {
+	@RequestMapping("/")
+	public ModelAndView index(Model model) {
+		precargar();
+		
+		LOG.info("Votaciones page access");
+		//usuario= new BeanUsuarios();
+		
+		model.addAttribute("vot", usuario);
+		
+		return new ModelAndView("index");
+		
+	}
+	
+	@RequestMapping(value="/irVotaciones",method= RequestMethod.POST)
+	public ModelAndView votaciones(BeanUsuarios usuario,Model model) {
 
 		LOG.info("Votaciones page access");
-		precargar();
+		//System.out.println(usuario.getIdUsuario());
+		
+		 user= Factories.service.createUsuarioService().findById(Integer.valueOf(usuario.getIdUsuario()));
+		if(user==null){
+			return new ModelAndView("errorInicio");
+		}
+		
+		this.usuario.setIdUsuario(usuario.getIdUsuario());
+		
 		
 		List <Votacion> listaVotaciones=new ArrayList<Votacion>();
 		
@@ -49,7 +73,7 @@ public class Main {
 		*/
 		
 		listaVotaciones= Factories.service.createVotacionService().listadoVotaciones();
-		System.out.println(listaVotaciones.size());
+		//System.out.println(listaVotaciones.size());
 		model.addAttribute("votaciones", listaVotaciones);
 		model.addAttribute("vot", votaciones);
 		
@@ -61,7 +85,7 @@ public class Main {
 		
 		if(!precargado){
 			
-			Factories.service.precargaDeDatosService().PrecargaDeDatos();
+			Factories.service.precargaDeDatosService().precargaDeDatos();
 			precargado=true;
 			
 		}
@@ -122,12 +146,23 @@ public class Main {
 			
 			
 			//model.addAttribute("vot", opcion);
-			Voto v = new Voto();
+			Voto v =Factories.service.createVotoService().findById(op.getId(), (long)user.getCodColElectoral());
 			
-			v.setIdOpcion(op.getId());
-			v.setIdColElect((long)0);
+			if(v==null){
+				
+				v= new Voto();
+				v.setIdOpcion(op.getId());
+				v.setIdColElect((long)user.getCodColElectoral());
+				
+				Factories.service.createVotoService().saveVoto(v);
+				
+			}else{
+				
+				Factories.service.createVotoService().incrementarVoto(v);
+				
+			}
 			
-			Factories.service.createVotoService().saveVoto(v);
+			
 			
 			return new ModelAndView("votar");
 			
@@ -160,6 +195,13 @@ public class Main {
 		System.out.println(votacion.getFechaFin());
 		System.out.println(votacion.getFechaInicio());
 		*/
+		
+		Votacion vot= new Votacion();
+		vot.setDefinicion(votacion.getDescripcion());
+		
+		
+		
+		
 		return new ModelAndView("votacionCreada");
 		
 	}
