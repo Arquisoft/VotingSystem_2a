@@ -281,8 +281,13 @@ public class Main {
 	public ModelAndView votosColegio(BeanColegioElectoral col,Model model) {
 		
 		LOG.info("Votacion page access");
+		
+		model.addAttribute("vot", usuario);
+
+		
 		System.out.println(col.getIdColegio());
 		System.out.println(col.getIdOpcion());
+		System.out.println(col.getNumVotos());
 		Opcion op = Factories.service.createOpcionService()
 				.findById(Long.valueOf(col.getIdOpcion()));
 		ColegioElectoral c = Factories.persistence.createColegioElectoralDao()
@@ -290,13 +295,13 @@ public class Main {
 		
 		if(op!=null && c!=null && !c.isVotoFisico()){
 			
-			Voto v =Factories.service.createVotoService().findById(op.getId(), (long)user.getCodColElectoral());
+			Voto v =Factories.service.createVotoService().findById(op.getId(), (long)c.getId());
 			
 			if(v==null){
 				
 				v= new Voto();
 				v.setIdOpcion(op.getId());
-				v.setIdColElect((long)user.getCodColElectoral());
+				v.setIdColElect((long)c.getId());
 				v.setTotVotos(Long.valueOf(col.getNumVotos()));
 				
 				Factories.service.createVotoService().saveVoto(v);
@@ -314,8 +319,8 @@ public class Main {
 			return new ModelAndView("index");
 			
 		}
-			
-		return new ModelAndView("errorEleccion");
+		
+		return new ModelAndView("errorColegioElectoral");
 		
 	}
 
