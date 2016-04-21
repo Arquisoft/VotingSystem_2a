@@ -6,6 +6,8 @@ public class Votado {
 	
 	private Long idVotacion;
 	private Long idVotante;
+	private Date haVotado;
+
 	public Date getHaVotado() {
 		return haVotado;
 	}
@@ -13,9 +15,6 @@ public class Votado {
 		this.haVotado = haVotado;
 	}
 
-	private Date haVotado;
-	
-	
 	public Votado(){
 		haVotado = new Date();
 	};

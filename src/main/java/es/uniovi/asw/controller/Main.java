@@ -15,6 +15,7 @@ import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Opcion;
 import es.uniovi.asw.model.Usuario;
 import es.uniovi.asw.model.Votacion;
+import es.uniovi.asw.model.Votado;
 import es.uniovi.asw.model.Voto;
 import es.uniovi.asw.presentacion.BeanOpcion;
 import es.uniovi.asw.presentacion.BeanUsuarios;
@@ -41,7 +42,7 @@ public class Main {
 	public ModelAndView index(Model model) {
 		precargar();
 		
-		LOG.info("Votaciones page access");
+		LOG.info("Index page access");
 		//usuario= new BeanUsuarios();
 		
 		model.addAttribute("vot", usuario);
@@ -56,9 +57,10 @@ public class Main {
 		LOG.info("Votaciones page access");
 		//System.out.println(usuario.getIdUsuario());
 		
-		 user= Factories.service.createUsuarioService().findById(Integer.valueOf(usuario.getIdUsuario()));
+		user= Factories.service.createUsuarioService().findById(Integer.valueOf(usuario.getIdUsuario()));
+		
 		if(user==null){
-			return new ModelAndView("errorInicio");
+			return new ModelAndView("errorInicio");//voy a error si el id de usuario no esta en la bd
 		}
 		
 		this.usuario.setIdUsuario(usuario.getIdUsuario());
@@ -73,7 +75,7 @@ public class Main {
 		*/
 		
 		listaVotaciones= Factories.service.createVotacionService().listadoVotaciones();
-		//System.out.println(listaVotaciones.size());
+
 		model.addAttribute("votaciones", listaVotaciones);
 		model.addAttribute("vot", votaciones);
 		
@@ -93,42 +95,50 @@ public class Main {
 	}
 
 	@RequestMapping(value="/votacion",method= RequestMethod.POST)
-	public ModelAndView opciones(BeanVotaciones votaciones, BeanUsuarios usuario,Model model) {
+	public ModelAndView opciones(BeanVotaciones votaciones,Model model) {
 		
 		LOG.info("Votacion page access");
 		
-		List<Opcion>listaOpciones = new ArrayList<Opcion>();
+		boolean votado = Factories.service.createVotadoService()
+		.haVotado((long)user.getId(), Long.valueOf(votaciones.getIdVotacion()));
 		
-		/*listaOpciones.add(new Opcion((long)1 , (long)2, "Mariano Rajoy"));
-		listaOpciones.add(new Opcion((long)1 , (long)2, "Albert Rivera"));
-		listaOpciones.add(new Opcion((long)1 , (long)2, "Pedro Sanchez"));
-		listaOpciones.add(new Opcion((long)1 , (long)2, "Pablo Iglesias"));
-		*/
+		if(!votado){
 		
-		Factories.service.createOpcionService()
-		.listadoOpciones(Long.valueOf(votaciones.getIdVotacion()));
-		Votacion v =Factories.service.createVotacionService()
-				.getTipoVotacion(Long.valueOf(votaciones.getIdVotacion()));
-		
-		//Usuario u = Factories.service.createUsuarioService().findByNif(usuario)
-		//System.out.println(v);
-		
-		if(v!=null){
+			List<Opcion>listaOpciones = new ArrayList<Opcion>();
 			
-			listaOpciones=Factories.service.createOpcionService()
-				.listadoOpciones(v.getId());
-			this.votaciones.setIdVotacion(votaciones.getIdVotacion());
-			model.addAttribute("opciones", listaOpciones);
-			model.addAttribute("vot", opcion);
+			/*listaOpciones.add(new Opcion((long)1 , (long)2, "Mariano Rajoy"));
+			listaOpciones.add(new Opcion((long)1 , (long)2, "Albert Rivera"));
+			listaOpciones.add(new Opcion((long)1 , (long)2, "Pedro Sanchez"));
+			listaOpciones.add(new Opcion((long)1 , (long)2, "Pablo Iglesias"));
+			*/
 			
-			return new ModelAndView("votacion");
+			Factories.service.createOpcionService()
+			.listadoOpciones(Long.valueOf(votaciones.getIdVotacion()));
+			Votacion v =Factories.service.createVotacionService()
+					.getTipoVotacion(Long.valueOf(votaciones.getIdVotacion()));
 			
+			//Usuario u = Factories.service.createUsuarioService().findByNif(usuario)
+			//System.out.println(v);
+			
+			if(v!=null){
+				
+				listaOpciones=Factories.service.createOpcionService()
+					.listadoOpciones(v.getId());
+				this.votaciones.setIdVotacion(votaciones.getIdVotacion());
+				model.addAttribute("opciones", listaOpciones);
+				model.addAttribute("vot", opcion);
+				
+				return new ModelAndView("votacion");
+				
+			}
+		
+			//System.out.println(votaciones.getIdVotacion());
+			//model.addAttribute("vot", votaciones);
+			
+			return new ModelAndView("errorEleccion");
 		}
-	
-		//System.out.println(votaciones.getIdVotacion());
-		//model.addAttribute("vot", votaciones);
 		
-		return new ModelAndView("errorEleccion");
+		return new ModelAndView("errorYaVotado");
 		
 	}
 	
