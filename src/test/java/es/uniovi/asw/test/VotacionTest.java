@@ -38,7 +38,9 @@ public class VotacionTest {
 		assertEquals(null,Factories.service.createVotacionService().getTipoVotacion(null));
 		
 		Votacion vt = new Votacion((long)1, "Congreso", new Date(), new Date());
+		vt.setFechaInicio(new Date());
 		assertEquals(new Date(),vt.getFechaInicio());
+		vt.setFechaFin(new Date());
 		assertEquals(new Date(),vt.getFechaFin());
 		assertEquals("1", Long.toString(vt.getId()));
 		assertEquals("Congreso",vt.getDefinicion());
