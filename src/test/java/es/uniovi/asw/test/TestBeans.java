@@ -14,7 +14,8 @@ import es.uniovi.asw.presentacion.BeanVotaciones;
 public class TestBeans {
 
 	@Test
-	public void test() {
+	public void test(){
+		
 		BeanColegioElectoral bce = new BeanColegioElectoral();
 		
 		bce.setIdColegio("1");
