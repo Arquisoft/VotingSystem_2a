@@ -49,7 +49,7 @@ public class MainControllerTest {
   
   @Test
   public void testColegio() throws Exception {
-    mvc.perform(get("/colegio")).andExpect(status().isOk()).andExpect(content().string(containsString("Votacion")));
+    mvc.perform(get("/colegio")).andExpect(status().isOk()).andExpect(content().string(containsString("Contabilizar votos de Colegio Electoral")));
   }
   
   //@Test

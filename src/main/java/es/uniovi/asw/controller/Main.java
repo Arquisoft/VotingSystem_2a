@@ -308,7 +308,7 @@ public class Main {
 				
 			}else{
 				
-				v.setTotVotos(Long.valueOf(col.getNumVotos()));
+				v.setTotVotos(v.getTotVotos()+Long.valueOf(col.getNumVotos()));
 				Factories.service.createVotoService().update(v);
 				
 			}
