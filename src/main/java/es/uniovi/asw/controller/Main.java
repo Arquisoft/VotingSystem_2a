@@ -27,7 +27,7 @@ public class Main {
 	BeanVotacion votacion= new BeanVotacion();
 	
 	BeanVotaciones votaciones= new BeanVotaciones();
-	
+		
 	@RequestMapping("/votaciones")
 	public ModelAndView votaciones(Model model) {
 
@@ -47,10 +47,9 @@ public class Main {
 		return new ModelAndView("votaciones");
 		
 	}
-	
 
 	@RequestMapping(value="/votacion",method= RequestMethod.POST)
-	public ModelAndView opciones(Model model) {
+	public ModelAndView opciones(BeanVotaciones votaciones,Model model) {
 		
 		LOG.info("Votacion page access");
 		
@@ -62,12 +61,23 @@ public class Main {
 		
 		Factories.service.createOpcionService()
 		.listadoOpciones(Long.valueOf(votaciones.getIdVotacion()));
+		Votacion v =Factories.service.createVotacionService()
+				.getTipoVotacion(Long.valueOf(votaciones.getIdVotacion()));
 		
-		model.addAttribute("opciones", listaOpciones);
-		System.out.println(votaciones.getIdVotacion());
-		model.addAttribute("vot", votaciones);
+		//System.out.println(v);
 		
-		return new ModelAndView("votacion");
+		if(v!=null){
+		//if(v!=null){
+			model.addAttribute("opciones", listaOpciones);
+			model.addAttribute("vot", votaciones);
+			return new ModelAndView("votacion");
+			
+		}
+	
+		//System.out.println(votaciones.getIdVotacion());
+		//model.addAttribute("vot", votaciones);
+		
+		return new ModelAndView("errorEleccion");
 		
 	}
 	
@@ -86,10 +96,10 @@ public class Main {
 	public ModelAndView guardarVotacion(BeanVotacion votacion,Model model) {
 		
 		LOG.info("Admin page access");
-		System.out.println(votacion.getDescripcion());
+		/*System.out.println(votacion.getDescripcion());
 		System.out.println(votacion.getFechaFin());
 		System.out.println(votacion.getFechaInicio());
-		
+		*/
 		return new ModelAndView("votacionCreada");
 		
 	}

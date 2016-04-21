@@ -20,38 +20,20 @@
 
 		<form  th:action="@{/votacion}" 
 		th:object="${vot}" method="post">
-	
-			
-	
+			<h3>Lstado de Votaciones</h3>
 			<div th:each="v: ${votaciones}">
 				
-				 <input type="radio" name="votaciones"  
-				 th:text="''+${v.definicion}" 
-				 th:field="*{idVotacion}" th:value="${v.id}" 
-				 onchange="document.getElementById('selected_text2').value=this.options[this.selectedIndex].text"/>
-				  
+				<p th:text="''+${v.id}+' '+${v.definicion}"/>
+				
 			</div>
 			
-			
-			
-			<input type="hidden" name="selected_text2" id="selected_text2"
+			<input name="idVotacion" id="idVotacion"
 					value="" th:field="*{idVotacion}" />
 			<input type="submit" name="verVotacion" value="Ver Votacion" />
 
 		</form>
 
 	</div>
-	<?php
-
-	if(isset($_POST['verVotacion']))
-	{
-
-    	$makerValue = $_POST['votaciones']; // make value
-
-    	$maker = mysql_real_escape_string($_POST['selected_text2']); // get the selected text
-    	echo $maker;
-	}
-	?>
 	
 </body>
 </html>

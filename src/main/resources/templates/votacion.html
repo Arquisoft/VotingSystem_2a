@@ -12,10 +12,10 @@
 		<hr />
 
 		<form>
-
+		<h3>Lstado de Opciones</h3>
 			<div th:each="opcion: ${opciones}" align="center">
 			
-				<h2 th:text="'Candidato: '+${opcion.descripcion}"></h2>
+				<h2 th:text="${opcion.id} +''+${opcion.descripcion}"></h2>
 				
 			</div>
 

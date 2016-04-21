@@ -11,7 +11,8 @@ public class ListadoOpciones {
 		
 		if(idVotacion!=null){
 			
-			return Factories.persistence.createOpcionDao().listOpcionesByVotacion(idVotacion);
+			return Factories.persistence.createOpcionDao()
+					.listOpcionesByVotacion(idVotacion);
 			
 		}
 		

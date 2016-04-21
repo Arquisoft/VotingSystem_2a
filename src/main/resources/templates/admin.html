@@ -11,7 +11,10 @@
 		<h2>Crear Votacion</h2>
 		<hr />
 
-		<form id="crear_votacion" th:object="${vot}" th:action="@{/crearVotacion}" method="post">
+		<form id="crear_votacion" 
+		th:object="${vot}" 
+		th:action="@{/crearVotacion}" 
+		method="post">
 
 			<label>Fecha de incio:</label>
 			<input id="fechaInicio" type="text" th:field="*{fechaInicio}" placeholder="dd/mm/yyyy hh:mm"/>
@@ -28,8 +31,8 @@
 			
 			<br/>
 			
-			<label>Opciones:* introducir opciones eparadas por ;</label>
-			<input id="descripcion" type="text" th:field="*{descripcion}"/>
+			<label>Opciones:</label>
+			<input id="descripcion" type="text" th:field="*{descripcion}"/>* introducir opciones eparadas por ;
 			
 			<br/>
 			
