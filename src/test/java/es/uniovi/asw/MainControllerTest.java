@@ -17,6 +17,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import es.uniovi.asw.controller.Main;
+import es.uniovi.asw.presentacion.BeanUsuarios;
+import scala.annotation.meta.setter;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
@@ -48,9 +52,19 @@ public class MainControllerTest {
     mvc.perform(get("/admin")).andExpect(status().isOk()).andExpect(content().string(containsString("Votacion")));
   }
   
-  //@Test
+  @Test
+  public void testColegio() throws Exception {
+    mvc.perform(get("/colegio")).andExpect(status().isOk()).andExpect(content().string(containsString("Votacion")));
+  }
+  
+  @Test
   public void testVotacion() throws Exception {
-    mvc.perform(get("/votacion")).andExpect(status().isOk()).andExpect(content().string(containsString("Votacion")));
+	Main m= new Main();
+	BeanUsuarios user= new BeanUsuarios();
+	user.setIdUsuario("1");
+	m.setUsuario(user);
+	
+    mvc.perform(get("/irVotacion")).andExpect(status().isOk()).andExpect(content().string(containsString("Votacion")));
   }
 
 }

@@ -206,6 +206,17 @@ public class Main {
 		
 	}
 	
+	@RequestMapping(value="/colegio")
+	public ModelAndView colegio(Model model) {
+		
+		LOG.info("Colegio page access");
+		
+		model.addAttribute("vot", colegio);
+
+		return new ModelAndView("votosColegioElectoral");
+		
+	}
+	
 	@RequestMapping(value="/crearVotacion",method= RequestMethod.POST)
 	public ModelAndView guardarVotacion(BeanVotacion votacion,Model model) {
 		
@@ -221,6 +232,7 @@ public class Main {
         	
             fechaDateFin = formato.parse(votacion.getFechaFin());
 			fechaDateInicio = formato.parse(votacion.getFechaInicio());
+			
 		} catch (ParseException e) {
 			
 			return new ModelAndView("errorCreacionVotacion");
@@ -260,5 +272,15 @@ public class Main {
 		return new ModelAndView("votacionCreada");
 		
 	}
+
+	
+	
+
+	public void setUsuario(BeanUsuarios usuario) {
+		this.usuario = usuario;
+	}
+	
+	
+	
 	
 }
