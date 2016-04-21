@@ -2,6 +2,8 @@ package es.uniovi.asw.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 import es.uniovi.asw.factories.Factories;
@@ -34,6 +36,12 @@ public class VotacionTest {
 		//assertEquals("Votacion al Congreso",aux.getDefinicion());
 		assertEquals(null,Factories.service.createVotacionService().getTipoVotacion((long)1232525235));
 		assertEquals(null,Factories.service.createVotacionService().getTipoVotacion(null));
+		
+		Votacion vt = new Votacion((long)1, "Congreso", new Date(), new Date());
+		assertEquals(new Date(),vt.getFechaInicio());
+		assertEquals(new Date(),vt.getFechaFin());
+		assertEquals("1", Long.toString(vt.getId()));
+		assertEquals("Congreso",vt.getDefinicion());
 		
 	}
 

@@ -20,5 +20,7 @@ public interface UsuarioDao {
 		
 	Usuario findByNIF(String login) ;
 	
+	Usuario findById(int id);
+	
 
 }

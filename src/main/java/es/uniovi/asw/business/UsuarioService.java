@@ -11,5 +11,6 @@ public interface UsuarioService {
 	boolean saveUser(Usuario usuario) ;
 	boolean puedeVotar (Usuario usuario);
 	List<Usuario> listaUsuarios();
+	Usuario findById(int id);
 	
 }

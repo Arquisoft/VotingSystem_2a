@@ -15,6 +15,7 @@ import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Opcion;
 import es.uniovi.asw.model.Votacion;
 import es.uniovi.asw.presentacion.BeanOpcion;
+import es.uniovi.asw.presentacion.BeanUsuarios;
 import es.uniovi.asw.presentacion.BeanVotacion;
 import es.uniovi.asw.presentacion.BeanVotaciones;
 
@@ -24,8 +25,9 @@ import es.uniovi.asw.presentacion.BeanVotaciones;
 public class Main {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Main.class);
-	
+
 	BeanVotacion votacion= new BeanVotacion();
+	BeanUsuarios usuarios = new BeanUsuarios();
 	BeanVotaciones votaciones= new BeanVotaciones();
 	BeanOpcion opcion= new BeanOpcion();
 
@@ -66,7 +68,7 @@ public class Main {
 	}
 
 	@RequestMapping(value="/votacion",method= RequestMethod.POST)
-	public ModelAndView opciones(BeanVotaciones votaciones,Model model) {
+	public ModelAndView opciones(BeanVotaciones votaciones, BeanUsuarios usuario,Model model) {
 		
 		LOG.info("Votacion page access");
 		
@@ -83,6 +85,7 @@ public class Main {
 		Votacion v =Factories.service.createVotacionService()
 				.getTipoVotacion(Long.valueOf(votaciones.getIdVotacion()));
 		
+		//Usuario u = Factories.service.createUsuarioService().findByNif(usuario)
 		//System.out.println(v);
 		
 		if(v!=null){
