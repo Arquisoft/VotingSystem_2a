@@ -53,6 +53,9 @@ public class UsuarioTest {
 		boolean guardado= Factories.service.createUsuarioService().saveUser(u);
 		assertEquals(true,Factories.service.createUsuarioService().puedeVotar(u));
 		assertEquals(true, guardado);
+		assertEquals(1,Factories.service.createUsuarioService().findById(1).getId());
+		assertEquals(null,Factories.service.createUsuarioService().findById(0));
+		assertNotNull(Factories.service.createUsuarioService().findById(1).getId());
 		boolean guardadoDoble= Factories.service.createUsuarioService().saveUser(u);
 		assertEquals(false, guardadoDoble);
 		assertEquals(false,Factories.service.createUsuarioService().saveUser(null));

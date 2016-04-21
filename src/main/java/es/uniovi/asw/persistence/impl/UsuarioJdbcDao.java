@@ -177,6 +177,54 @@ public class UsuarioJdbcDao implements UsuarioDao {
 
 	}
 
+	@Override
+	public Usuario findById(int id) {
+		Connection con = null;
+
+		PreparedStatement ps = null;
+
+		try {
+
+			con = Jdbc.getConnection();
+
+			ps = con.prepareStatement(QUERIES.getProperty("FIND_USER_BY_ID"));
+			ps.setLong(1, id);
+
+			ResultSet rs = ps.executeQuery();
+			Usuario user = null;
+
+			if (rs != null && rs.next()) {
+
+				String nombre = rs.getString(3);
+				String password = rs.getString(7);
+				String email = rs.getString(4);
+				int CodColegio = rs.getInt(6);
+				String nif = rs.getString(5);
+				String login = rs.getString(2);
+
+				user = new Usuario(nombre, email, nif,
+						password, CodColegio, (int) id, login);
+				
+				user.setVotoElectronico(rs.getBoolean("VOTOELECTRONICO"));
+				
+			}
+
+			return user;
+
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+
+		} finally {
+
+			Jdbc.close(ps);
+			Jdbc.close(con);
+
+		}
+
+		return null;
+	}
+
 
 
 }

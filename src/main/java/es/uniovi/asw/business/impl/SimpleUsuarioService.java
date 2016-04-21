@@ -4,6 +4,7 @@ import java.util.List;
 
 import es.uniovi.asw.business.UsuarioService;
 import es.uniovi.asw.business.impl.classes.FindUsuario;
+import es.uniovi.asw.business.impl.classes.FindUsuarioPorId;
 import es.uniovi.asw.business.impl.classes.ListadoUsuarios;
 import es.uniovi.asw.business.impl.classes.PuedeVotar;
 import es.uniovi.asw.business.impl.classes.SaveUser;
@@ -37,6 +38,12 @@ public class SimpleUsuarioService implements UsuarioService {
 
 		return new ListadoUsuarios().listadoUsuarios();
 		
+	}
+
+	@Override
+	public Usuario findById(int id) {
+		
+		return new FindUsuarioPorId().findById(id);
 	}
 
 }
