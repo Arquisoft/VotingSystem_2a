@@ -2,6 +2,8 @@ package es.uniovi.asw.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 import es.uniovi.asw.factories.Factories;
@@ -34,6 +36,12 @@ public class VotadoTest {
 		assertEquals(true,haVotado);
 		assertEquals(false,Factories.service.createVotadoService().votado(null));
 		//assertEquals(false,Factories.service.createVotadoService().haVotado(null, null));
+		Votado pf = new Votado();
+		assertEquals(new Date(), pf.getHaVotado());
+		Votado pf1 = new Votado((long)1, (long)1);
+		assertEquals(new Date(), pf1.getHaVotado());
+		Votado pf2 = new Votado((long)1, (long)1, new Date());
+		assertEquals(new Date(), pf2.getHaVotado());
 		
 	}
 

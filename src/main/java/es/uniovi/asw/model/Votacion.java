@@ -30,6 +30,7 @@ public class Votacion {
 	
 	public Votacion() {
 		
+		
 	}
 	
 	public Votacion(Long id, String definicion) {
