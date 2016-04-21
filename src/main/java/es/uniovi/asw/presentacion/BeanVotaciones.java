@@ -4,10 +4,6 @@ public class BeanVotaciones {
 	
 	private String idVotacion;
 	
-	public BeanVotaciones() {
-	
-	}
-	
 	public String getIdVotacion() {
 		return idVotacion;
 	}

@@ -246,12 +246,22 @@ public class Main {
 		
 		List<Votacion> lst =Factories.service.createVotacionService().listadoVotaciones();
 		
+		vot=lst.get(lst.size()-1);
+		System.out.println(vot);
 		String[] elems = votacion.getOpciones().split(";");
-		/*for(){
+		
+		
+		
+		for(int i=0;i<elems.length;i++){
 			
+			Opcion opc= new Opcion();
+			opc.setDescripcion(elems[i]);
+			opc.setIdVotacion(vot.getId());
+			
+			Factories.persistence.createOpcionDao().save(opc);
 			
 		}
-		*/
+		
 		
 		return new ModelAndView("votacionCreada");
 		

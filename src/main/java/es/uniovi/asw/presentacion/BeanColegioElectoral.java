@@ -14,8 +14,6 @@ public class BeanColegioElectoral {
 	public void setIdOpcion(String idOpcion) {
 		this.idOpcion = idOpcion;
 	}
-
-	public BeanColegioElectoral(){}
 	
 	public String getIdColegio() {
 		return idColegio;

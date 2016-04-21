@@ -4,11 +4,6 @@ public class BeanOpcion {
 	
 	private String idOpcion;
 
-	public BeanOpcion(){
-		
-		
-	}
-	
 	public String getIdOpcion() {
 		return idOpcion;
 	}

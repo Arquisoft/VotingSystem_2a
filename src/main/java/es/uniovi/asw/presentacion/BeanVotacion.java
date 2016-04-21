@@ -7,10 +7,6 @@ public class BeanVotacion {
 	private String descripcion;
 	private String opciones;
 
-	public BeanVotacion(){
-		
-	}
-	
 	public String getFechaInicio() {
 		return fechaInicio;
 	}
