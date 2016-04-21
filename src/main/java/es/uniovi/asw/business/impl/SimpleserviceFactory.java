@@ -4,6 +4,7 @@ import es.uniovi.asw.business.CircunscripcionService;
 import es.uniovi.asw.business.ColegioElectoralService;
 import es.uniovi.asw.business.ComunidadAutonomaService;
 import es.uniovi.asw.business.OpcionService;
+import es.uniovi.asw.business.PrecargaDeDatosService;
 import es.uniovi.asw.business.ServiceFactory;
 import es.uniovi.asw.business.UsuarioService;
 import es.uniovi.asw.business.VotacionService;
@@ -65,6 +66,12 @@ public class SimpleserviceFactory implements ServiceFactory {
 	public VotoService createVotoService() {
 
 		return new SimpleVotoService();
+		
+	}
+
+	@Override
+	public PrecargaDeDatosService precargaDeDatosService() {
+		return new SimplePrecargaDeDatosService();
 		
 	}
 
