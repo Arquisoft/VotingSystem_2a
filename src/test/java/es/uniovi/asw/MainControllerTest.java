@@ -32,13 +32,23 @@ public class MainControllerTest {
   public void setUp() throws Exception {
     mvc = MockMvcBuilders.webAppContextSetup(context).build();
   }
-
+  
   @Test
+  public void testIinicio() throws Exception {
+    mvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string(containsString("Votacion")));
+  }
+  
+  //@Test
   public void testVotaciones() throws Exception {
-    mvc.perform(get("/votaciones")).andExpect(status().isOk()).andExpect(content().string(containsString("Votaciones")));
+    mvc.perform(get("/irVotaciones")).andExpect(status().isOk()).andExpect(content().string(containsString("Votaciones")));
   }
   
   @Test
+  public void testAdmin() throws Exception {
+    mvc.perform(get("/admin")).andExpect(status().isOk()).andExpect(content().string(containsString("Votacion")));
+  }
+  
+  //@Test
   public void testVotacion() throws Exception {
     mvc.perform(get("/votacion")).andExpect(status().isOk()).andExpect(content().string(containsString("Votacion")));
   }

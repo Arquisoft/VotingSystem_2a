@@ -1,6 +1,9 @@
 package es.uniovi.asw.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -212,11 +215,43 @@ public class Main {
 		System.out.println(votacion.getFechaInicio());
 		*/
 		
+		  SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		 
+		  Date fechaDateFin = null;
+	      Date fechaDateInicio = null;
+
+        try {
+        	
+        	
+            fechaDateFin = formato.parse(votacion.getFechaFin());
+			fechaDateInicio = formato.parse(votacion.getFechaInicio());
+		} catch (ParseException e) {
+			
+			return new ModelAndView("errorCrearVotacion");
+			
+		}
+	        
+	    if(fechaDateInicio.after(fechaDateFin)){
+	    	  
+	    	 return new ModelAndView("errorCrearVotacion");
+	    	  
+	    }
+		
 		Votacion vot= new Votacion();
 		vot.setDefinicion(votacion.getDescripcion());
+		vot.setFechaFin(fechaDateFin);
+		vot.setFechaInicio(fechaDateInicio);
 		
+		Factories.service.createVotacionService().save(vot);
 		
+		List<Votacion> lst =Factories.service.createVotacionService().listadoVotaciones();
 		
+		String[] elems = votacion.getOpciones().split(";");
+		/*for(){
+			
+			
+		}
+		*/
 		
 		return new ModelAndView("votacionCreada");
 		
