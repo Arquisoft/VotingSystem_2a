@@ -5,7 +5,16 @@ public class BeanColegioElectoral {
 	
 	private String idColegio;
 	private String numVotos;
+	private String idOpcion;
 	
+	public String getIdOpcion() {
+		return idOpcion;
+	}
+
+	public void setIdOpcion(String idOpcion) {
+		this.idOpcion = idOpcion;
+	}
+
 	public BeanColegioElectoral(){}
 	
 	public String getIdColegio() {
