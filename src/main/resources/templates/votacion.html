@@ -11,16 +11,27 @@
 		<h2>Votacion</h2>
 		<hr />
 
-		<form>
+		<form id="crear_voto" 
+		th:object="${vot}" 
+		th:action="@{/crearVotacion}" 
+		method="post">
+		
 		<h3>Lstado de Opciones</h3>
 			<div th:each="opcion: ${opciones}" align="center">
 			
-				<h2 th:text="${opcion.id} +''+${opcion.descripcion}"></h2>
+				<h3 th:text="${opcion.id}+' '+${opcion.descripcion}"></h3>
 				
 			</div>
 
-			<h2 th:text="'Votacion:'+ ${vot.idVotacion}"></h2>
-
+			<br/>
+			
+			<label>Inserte opcion elegida:</label>
+			<input id="idOcion" type="text" th:field="*{idOpcion}"/>
+			
+			<br/>
+			
+			<input type="submit" name="guardarVoto" value="Votar" />
+			
 			<a th:href="@{/votaciones}">Volver</a>
 			
 		</form>

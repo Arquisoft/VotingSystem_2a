@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
 import es.uniovi.asw.factories.Factories;
 import es.uniovi.asw.model.Opcion;
 import es.uniovi.asw.model.Votacion;
+import es.uniovi.asw.presentacion.BeanOpcion;
 import es.uniovi.asw.presentacion.BeanVotacion;
 import es.uniovi.asw.presentacion.BeanVotaciones;
 
@@ -24,27 +24,44 @@ import es.uniovi.asw.presentacion.BeanVotaciones;
 public class Main {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Main.class);
-	BeanVotacion votacion= new BeanVotacion();
 	
+	BeanVotacion votacion= new BeanVotacion();
 	BeanVotaciones votaciones= new BeanVotaciones();
-		
+	BeanOpcion opcion= new BeanOpcion();
+
+	private boolean precargado=false;	
+	
 	@RequestMapping("/votaciones")
 	public ModelAndView votaciones(Model model) {
 
 		LOG.info("Votaciones page access");
-				
+		precargar();
+		
 		List <Votacion> listaVotaciones=new ArrayList<Votacion>();
-	
+		
+		/*
 		listaVotaciones.add(new Votacion((long)1, "Elecciones al Senado"));
 		listaVotaciones.add(new Votacion((long)2, "Elecciones al Congreso"));
 		listaVotaciones.add(new Votacion((long)3, "Referendum"));
+		*/
 		
-		//listaVotaciones= Factories.service.createVotacionService().listadoVotaciones();
+		listaVotaciones= Factories.service.createVotacionService().listadoVotaciones();
 		System.out.println(listaVotaciones.size());
 		model.addAttribute("votaciones", listaVotaciones);
 		model.addAttribute("vot", votaciones);
 		
 		return new ModelAndView("votaciones");
+		
+	}
+
+	private void precargar() {
+		
+		if(!precargado){
+			
+			Factories.service.precargaDeDatosService().PrecargaDeDatos();
+			precargado=true;
+			
+		}
 		
 	}
 
@@ -54,10 +71,12 @@ public class Main {
 		LOG.info("Votacion page access");
 		
 		List<Opcion>listaOpciones = new ArrayList<Opcion>();
-		listaOpciones.add(new Opcion((long)1 , (long)2, "Mariano Rajoy"));
+		
+		/*listaOpciones.add(new Opcion((long)1 , (long)2, "Mariano Rajoy"));
 		listaOpciones.add(new Opcion((long)1 , (long)2, "Albert Rivera"));
 		listaOpciones.add(new Opcion((long)1 , (long)2, "Pedro Sanchez"));
 		listaOpciones.add(new Opcion((long)1 , (long)2, "Pablo Iglesias"));
+		*/
 		
 		Factories.service.createOpcionService()
 		.listadoOpciones(Long.valueOf(votaciones.getIdVotacion()));
@@ -67,10 +86,40 @@ public class Main {
 		//System.out.println(v);
 		
 		if(v!=null){
-		//if(v!=null){
+			
+			listaOpciones=Factories.service.createOpcionService()
+				.listadoOpciones(v.getId());
+			
 			model.addAttribute("opciones", listaOpciones);
-			model.addAttribute("vot", votaciones);
+			model.addAttribute("vot", opcion);
+			
 			return new ModelAndView("votacion");
+			
+		}
+	
+		//System.out.println(votaciones.getIdVotacion());
+		//model.addAttribute("vot", votaciones);
+		
+		return new ModelAndView("errorEleccion");
+		
+	}
+	
+	@RequestMapping(value="/votar",method= RequestMethod.POST)
+	public ModelAndView votar(BeanOpcion opcion,Model model) {
+		
+		LOG.info("Votacion page access");
+		
+		Opcion op = Factories.service.createOpcionService()
+				.findById(Long.valueOf(opcion.getIdOpcion()));
+		
+		
+		if(op!=null){
+			
+			
+			//model.addAttribute("vot", opcion);
+			
+			return new ModelAndView("votar");
+			
 			
 		}
 	

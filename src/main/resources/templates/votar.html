@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<link href="../static/css/voting.css" th:href="@{/css/voting.css}"
+	rel="stylesheet" />
+</head>
+<body>
+
+	<div class="header" th:fragment="cabecera" align="center">
+		<h2>Ha Votado</h2>
+	<hr />
+		<p>Votacion creacion con exito</p>
+		<a th:href="@{/votaciones}">Volver a Inicio</a>
+	</div>
+
+</body>
+</html>
