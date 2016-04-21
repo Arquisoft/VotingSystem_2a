@@ -37,7 +37,7 @@ public class Main {
 	private BeanUsuarios usuario = new BeanUsuarios();
 	private BeanVotaciones votaciones= new BeanVotaciones();
 	private BeanOpcion opcion= new BeanOpcion();
-	//private BeanColegioElectoral colegio= new BeanColegioElectoral();
+	private BeanColegioElectoral colegio= new BeanColegioElectoral();
 
 	private Usuario user;
 	
@@ -209,11 +209,7 @@ public class Main {
 	@RequestMapping(value="/crearVotacion",method= RequestMethod.POST)
 	public ModelAndView guardarVotacion(BeanVotacion votacion,Model model) {
 		
-		LOG.info("Admin page access");
-		/*System.out.println(votacion.getDescripcion());
-		System.out.println(votacion.getFechaFin());
-		System.out.println(votacion.getFechaInicio());
-		*/
+		LOG.info("CrearVotacion page access");
 		
 		  SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		 
@@ -227,13 +223,13 @@ public class Main {
 			fechaDateInicio = formato.parse(votacion.getFechaInicio());
 		} catch (ParseException e) {
 			
-			return new ModelAndView("errorCrearVotacion");
+			return new ModelAndView("errorCreacionVotacion");
 			
 		}
 	        
 	    if(fechaDateInicio.after(fechaDateFin)){
 	    	  
-	    	 return new ModelAndView("errorCrearVotacion");
+	    	 return new ModelAndView("errorCreacionVotacion");
 	    	  
 	    }
 		
@@ -249,8 +245,6 @@ public class Main {
 		vot=lst.get(lst.size()-1);
 		System.out.println(vot);
 		String[] elems = votacion.getOpciones().split(";");
-		
-		
 		
 		for(int i=0;i<elems.length;i++){
 			
