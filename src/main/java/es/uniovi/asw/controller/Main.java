@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import es.uniovi.asw.factories.Factories;
+import es.uniovi.asw.model.ColegioElectoral;
 import es.uniovi.asw.model.Opcion;
 import es.uniovi.asw.model.Usuario;
 import es.uniovi.asw.model.Votacion;
@@ -84,6 +85,7 @@ public class Main {
 
 		LOG.info("Votaciones page access");
 		
+		System.out.println(this.usuario);
 		user= Factories.service.createUsuarioService().findById(Integer.valueOf(usuario.getIdUsuario()));
 		
 		if(user==null){
@@ -275,12 +277,47 @@ public class Main {
 
 	
 	
-
-	public void setUsuario(BeanUsuarios usuario) {
-		this.usuario = usuario;
+	@RequestMapping(value="/guardarColegio",method= RequestMethod.POST)
+	public ModelAndView votosColegio(BeanColegioElectoral col,Model model) {
+		
+		LOG.info("Votacion page access");
+		System.out.println(col.getIdColegio());
+		System.out.println(col.getIdOpcion());
+		Opcion op = Factories.service.createOpcionService()
+				.findById(Long.valueOf(col.getIdOpcion()));
+		ColegioElectoral c = Factories.persistence.createColegioElectoralDao()
+				.findById(Long.valueOf(col.getIdColegio()));
+		
+		if(op!=null && c!=null && !c.isVotoFisico()){
+			
+			Voto v =Factories.service.createVotoService().findById(op.getId(), (long)user.getCodColElectoral());
+			
+			if(v==null){
+				
+				v= new Voto();
+				v.setIdOpcion(op.getId());
+				v.setIdColElect((long)user.getCodColElectoral());
+				v.setTotVotos(Long.valueOf(col.getNumVotos()));
+				
+				Factories.service.createVotoService().saveVoto(v);
+				
+			}else{
+				
+				v.setTotVotos(Long.valueOf(col.getNumVotos()));
+				Factories.service.createVotoService().update(v);
+				
+			}
+			
+			c.setVotoFisico(true);
+			Factories.service.createColegioElectoralService().update(c);
+			
+			return new ModelAndView("index");
+			
+		}
+			
+		return new ModelAndView("errorEleccion");
+		
 	}
-	
-	
-	
+
 	
 }

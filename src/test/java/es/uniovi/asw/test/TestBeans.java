@@ -47,7 +47,5 @@ public class TestBeans {
 		bvs.setIdVotacion("1");
 		assertEquals("1", bvs.getIdVotacion());
 		
-		
-		
 	}
 }
