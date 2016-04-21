@@ -13,6 +13,6 @@ Voting System
 * Dario Suarez
 * Victor Retortillo
 
-
+direccion -> localhost:8090/
 
 
