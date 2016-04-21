@@ -10,5 +10,6 @@ public interface ServiceFactory {
 	VotacionService createVotacionService();
 	VotadoService createVotadoService();
 	VotoService createVotoService();
+	PrecargaDeDatosService precargaDeDatosService();
 	
 }
