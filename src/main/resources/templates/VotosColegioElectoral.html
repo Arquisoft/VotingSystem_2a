@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<link href="../static/css/voting.css" th:href="@{/css/voting.css}"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="header" th:fragment="cabecera" align="center">
+		<h2>Contabilizar votos de Colegio Electoral</h2>
+		<hr />
+
+		<form id="VotosColegio" 
+		th:object="${vot}" 
+		th:action="@{/crearVotacion}" 
+		method="post">
+
+			<label>Id del Colegio Electoral:</label>
+			<input id="idColegioElectoral" type="text"  th:field="*{idColegio}"/>
+			
+			<br/>
+			
+			<label>Id de la opción:</label>
+			<input id="idOpcion" type="text" th:field="*{idOpcion}" />
+			
+			<br/>
+			
+			<label>Numero de votos:</label>
+			<input id="numeroDeVotos" type="text" th:field="*{numVotos}"/>
+			
+			<br/>
+			
+			<input type="submit" name="recuentoDeVotos" value="Crear" />
+			<a th:href="@{/irVotaciones}">Volver</a>
+			
+		</form>
+
+	</div>
+
+</body>
+</html>
