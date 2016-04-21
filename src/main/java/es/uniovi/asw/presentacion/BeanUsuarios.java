@@ -8,11 +8,6 @@ public class BeanUsuarios {
 	
 	}
 
-	public BeanUsuarios(String idUsuario) {
-		super();
-		this.idUsuario = idUsuario;
-	}
-
 	public String getIdUsuario() {
 		return idUsuario;
 	}

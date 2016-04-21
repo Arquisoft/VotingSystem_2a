@@ -17,6 +17,7 @@ import es.uniovi.asw.model.Usuario;
 import es.uniovi.asw.model.Votacion;
 import es.uniovi.asw.model.Votado;
 import es.uniovi.asw.model.Voto;
+import es.uniovi.asw.presentacion.BeanColegioElectoral;
 import es.uniovi.asw.presentacion.BeanOpcion;
 import es.uniovi.asw.presentacion.BeanUsuarios;
 import es.uniovi.asw.presentacion.BeanVotacion;
@@ -33,7 +34,8 @@ public class Main {
 	private BeanUsuarios usuario = new BeanUsuarios();
 	private BeanVotaciones votaciones= new BeanVotaciones();
 	private BeanOpcion opcion= new BeanOpcion();
-	
+	//private BeanColegioElectoral colegio= new BeanColegioElectoral();
+
 	private Usuario user;
 	
 	private boolean precargado=false;	
@@ -162,8 +164,6 @@ public class Main {
 		
 		if(op!=null && op.getIdVotacion().equals(idVotacon)){
 			
-			
-			//model.addAttribute("vot", opcion);
 			Voto v =Factories.service.createVotoService().findById(op.getId(), (long)user.getCodColElectoral());
 			
 			if(v==null){

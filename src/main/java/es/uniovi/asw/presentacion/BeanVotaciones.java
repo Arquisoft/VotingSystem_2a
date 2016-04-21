@@ -7,12 +7,7 @@ public class BeanVotaciones {
 	public BeanVotaciones() {
 	
 	}
-
-	public BeanVotaciones(String idVotacion) {
-		super();
-		this.idVotacion = idVotacion;
-	}
-
+	
 	public String getIdVotacion() {
 		return idVotacion;
 	}

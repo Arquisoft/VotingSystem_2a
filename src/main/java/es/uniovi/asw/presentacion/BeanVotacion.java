@@ -11,13 +11,6 @@ public class BeanVotacion {
 		
 	}
 	
-	public BeanVotacion(String fechaInicio, String fechaFin, String descripcion,String opciones) {
-		super();
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
-		this.descripcion = descripcion;
-	}
-	
 	public String getFechaInicio() {
 		return fechaInicio;
 	}

@@ -9,13 +9,6 @@ public class BeanOpcion {
 		
 	}
 	
-	public BeanOpcion(String idOpcion) {
-		
-		super();
-		this.idOpcion = idOpcion;
-		
-	}
-	
 	public String getIdOpcion() {
 		return idOpcion;
 	}
